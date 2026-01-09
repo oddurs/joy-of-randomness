@@ -33,15 +33,17 @@ print(f"Longest streak: {longest_streak(flips)}")
 
 ### 1.2: Birthday Pairs
 
-For a group of $n$ people, the probability that at least two share a birthday is:
+Think about it intuitively: with 50 people, you have many pairs—50 × 49 / 2 = 1,225 pairs. Each pair is an opportunity for a birthday match. That's a lot of chances!
 
-$$P(\text{match}) = 1 - \frac{365}{365} \cdot \frac{364}{365} \cdot \frac{363}{365} \cdots \frac{365-n+1}{365}$$
+To calculate this formally, we compute the probability that *all* birthdays are different, then take the complement:
 
-For 50 people:
+$$P(\text{all different}) = \frac{365}{365} \times \frac{364}{365} \times \frac{363}{365} \times \cdots \times \frac{316}{365}$$
 
-$$P(\text{match}) = 1 - \prod_{i=0}^{49} \frac{365-i}{365} \approx 0.97$$
+Then the probability of at least one match is:
 
-**Answer:** About 97%.
+$$P(\text{match}) = 1 - P(\text{all different}) \approx 0.97$$
+
+**Answer:** About 97% for 50 people.
 
 ```python
 def birthday_probability(n):
@@ -283,13 +285,17 @@ for pattern in ['a', 'aa', 'aaa', 'abc', 'aba']:
 
 ### 1.7: The Unfair Coin
 
-**Analysis:** 742 heads out of 1000 is 74.2%. That's a big deviation from 50%!
+**Analysis:** 742 heads out of 1000 is 74.2%. That's a massive deviation from 50%!
 
-But here's the catch: randomness produces variation. With 1000 flips, standard deviation is about $\sqrt{1000 \cdot 0.5 \cdot 0.5} \approx 16$.
+With randomness in coin flips, there's *always* variation around the expected 50%. The size of this variation shrinks as you flip more—it's proportional to the square root of the number of flips.
 
-So 742 heads is about $(742 - 500) / 16 \approx 15$ standard deviations away. That's *extremely* unlikely from a fair coin (probability ≈ 10^(-50)).
+Specifically, with 1000 flips, the standard deviation (a measure of expected fluctuation) is:
 
-**Answer:** The coin is almost certainly biased. You could run more flips to confirm, but 742/1000 is decisive.
+$$\sigma = \sqrt{n \cdot p \cdot (1-p)} = \sqrt{1000 \cdot 0.5 \cdot 0.5} \approx 16$$
+
+So 742 heads is about $(742 - 500) / 16 \approx 15$ standard deviations away from the expected 500. That's *extremely* unlikely—a probability around $10^{-50}$.
+
+**Answer:** The coin is almost certainly biased. With 742/1000, you don't need more data—this is decisive.
 
 ---
 

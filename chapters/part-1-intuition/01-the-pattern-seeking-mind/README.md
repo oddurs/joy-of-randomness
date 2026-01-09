@@ -163,16 +163,19 @@ Here's a light version of the same idea. In a group of 23 people, what's the pro
 
 Most people guess something small. 5%? 10%?
 
-The answer is about 50%.
+The answer is about 50%. This shocks people. It seems impossible.
 
-With just 23 people, you have a 50% chance that two share a birthday. This shocks people. It seems impossible. But the math is simple:
+But think about it this way: you don't need two people to match a specific birthday (like "both born on January 3"). You just need *any two people* to match *each other*. That's a much looser condition.
 
-- The first person can have any birthday.
-- The second person has a 364/365 chance of being different.
-- The third person has a 363/365 chance of being different from the first two.
-- And so on...
+With 23 people, you have a lot of pairs: 23 × 22 / 2 = 253 different pairs. Each pair is a chance for a match. When you have that many opportunities for coincidence, it becomes likely.
 
-Multiply these out and you get: 0.493.
+Here's the calculation: Start with the first person (any birthday is fine). The second person has a 364/365 chance of being different. The third has a 363/365 chance of being different from the first two. Keep multiplying:
+
+$$P(\text{all different}) = \frac{365}{365} \times \frac{364}{365} \times \frac{363}{365} \times \cdots \times \frac{343}{365}$$
+
+This works out to about 0.507. So the probability that at least two people *do* match is:
+
+$$P(\text{match}) = 1 - 0.507 = 0.493 \approx 50\%$$
 
 Why does this matter? Because it shows how much clustering we should *expect* in random data. When you have many opportunities for a coincidence (many pairs of people, many pairs of birthdays), coincidences happen constantly. They're not miraculous. They're inevitable.
 
