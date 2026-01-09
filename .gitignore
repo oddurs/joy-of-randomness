@@ -33,3 +33,4 @@ env/
 .dmypy.json
 dmypy.json
 .pyre/
+.code-workspace
