@@ -80,6 +80,14 @@ If you could plot this, you'd see a line that starts all over the place—someti
 
 This is the law of large numbers at work. This is what "averaging out" actually means.
 
+<div align="center">
+
+<img src="./src/figures/3.1.png" alt="Running proportion convergence over 10,000 coin flips" width="600">
+
+**Figure 3.1:** Running proportion of heads across 10,000 coin flips (log scale). Early on, the line bounces wildly between 0 and 1. Gradually, it settles into a tight band around 0.5. By flip 10,000, the variation is minimal. This is the law of large numbers in action: the running average converges to the expected value.
+
+</div>
+
 ## The Key Distinction
 
 Here's something subtle, and it's easy to get wrong.
@@ -91,6 +99,14 @@ Let's think about this. After 10,000 flips, you expect about 5,000 heads. But yo
 The absolute difference is *growing*. But as a proportion, it's *shrinking*. After 100 flips, 5 extra heads is a 5% imbalance. After 100,000 flips, 500 extra heads is a 0.5% imbalance.
 
 This is crucial. The law of large numbers doesn't say the difference between heads and tails shrinks to zero. It says the *proportion* shrinks. The noise gets diluted by the signal. You're adding more and more information, and each new flip contributes less and less to changing your estimate of the coin's fairness.
+
+<div align="center">
+
+<img src="./src/figures/3.3.png" alt="Absolute vs relative difference between heads and tails" width="600">
+
+**Figure 3.3:** Left panel shows absolute difference (|Heads - Tails|) growing over 10,000 flips—larger deviations are inevitable with more data. Right panel shows proportional difference shrinking toward zero. This is the key distinction: while absolute imbalance can grow, proportional imbalance shrinks. After 100 flips, 5 extra heads is significant (5%). After 100,000 flips, 500 extra heads is negligible (0.5%).
+
+</div>
 
 ## How Fast Does It Converge?
 
@@ -105,6 +121,14 @@ After 10,000 flips, the typical fluctuation is about $1/\sqrt{10000} = 1/100 = 0
 After 1,000,000 flips, the typical fluctuation is about $1/\sqrt{1000000} = 1/1000 = 0.001$, or 0.1%. You're locked in.
 
 Notice: to reduce fluctuations by a factor of ten, you need a hundred times more data. This is why the spread of uncertainty shrinks slowly. And it's why polling works: you can estimate a population proportion with reasonable accuracy from a reasonably-sized sample, but you can't be ultra-precise without a huge sample.
+
+<div align="center">
+
+<img src="./src/figures/3.2.png" alt="Convergence rate showing fluctuations shrinking as 1/sqrt(n)" width="600">
+
+**Figure 3.2:** Multiple simulations of coin flips showing how the envelope of typical fluctuation shrinks at the rate 1/sqrt(n). Light blue lines show individual simulation trajectories. Red dashed lines mark the theoretical bounds. Notice how the band around 0.5 tightens dramatically as sample size increases (log scale on both axes). After 100,000 flips, nearly all simulations are within 0.1% of 0.5.
+
+</div>
 
 ## The Gambler's Fallacy Lurks Here
 
@@ -123,6 +147,14 @@ Say you flip a coin 100 times and get 60 heads (40% ahead). The running proporti
 But did the coin "balance things out"? No. The 500 heads you got in the second batch were perfectly normal—0.5 is what we expect. It's just that 500 out of 1,000 dilutes the original 60 out of 100. The early excess doesn't disappear; it gets watered down.
 
 And here's the key: each new flip, even after the original streak, still has exactly a 50% chance of being heads. Nothing changed about the coin. Nothing was "owed." The next flip after seven heads is still 50/50.
+
+<div align="center">
+
+<img src="./src/figures/3.4.png" alt="Gambler's fallacy: early streak gets diluted but not reversed" width="600">
+
+**Figure 3.4:** A simulated sequence starting with 60 heads in the first 100 flips (red shaded region). The running proportion begins at 0.6. Then we add 9,900 more flips with normal 50/50 outcomes. Notice the running proportion gradually declines toward 0.5 (green dashed line), but it never "reverses" or overshoots. The early excess gets diluted, not balanced. Subsequent flips are still 50/50—they don't compensate for the original streak.
+
+</div>
 
 ## Building Intuition
 
