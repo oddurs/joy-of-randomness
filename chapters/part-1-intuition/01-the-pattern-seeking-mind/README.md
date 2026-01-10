@@ -254,7 +254,7 @@ Let's look at actual basketball data. We'll take some real shooting records and 
 
 <div align="center">
 
-![Placeholder for hot hand streak comparison](../../../assets/images/placeholders/standard_deviation.svg)
+<img src="../../../assets/images/1.5-hot-hand-streaks.png" alt="Do Hot Streaks Exceed What Randomness Produces? Real vs Simulated Basketball Shooting" width="600">
 
 **Figure 1.5:** Comparison of streak lengths in real basketball shooting (blue) versus simulated random shooting (gray). The distributions are remarkably similar, suggesting that visible streaks in real shooting don't necessarily indicate a "hot hand" effect—they may just be what randomness produces.
 
