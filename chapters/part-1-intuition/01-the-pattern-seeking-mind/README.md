@@ -125,7 +125,7 @@ Yet this isn't rare. Run 10,000 simulations and a streak of 7+ happens in about 
 
 <div align="center">
 
-![Placeholder for longest streak distribution](../../../assets/images/placeholders/standard_deviation.svg)
+<img src="../../../assets/images/1.2-longest-streak-distribution.png" alt="Distribution of longest streaks in 100 coin flips" width="700">
 
 **Figure 1.2:** Distribution of longest streaks in 100 coin flips across 10,000 simulations. The mean is approximately 7, and streaks of 10 or more occur regularly. This distribution captures the clustering illusion: randomness naturally produces the "rare" patterns we expect not to see.
 
