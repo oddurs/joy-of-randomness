@@ -25,7 +25,7 @@ Let's see this for ourselves. Here's a simple simulation: place 200 random point
 
 <div align="center">
 
-<img src="../../../assets/images/1.1-clustering-illusion.png" alt="Clustering Illusion: Truly Random vs Human Random" width="700">
+<img src="../../../assets/images/1.1-clustering-illusion.png" alt="Clustering Illusion: Truly Random vs Human Random" style="width: 50%">
 
 **Figure 1.1:** Side-by-side comparison of truly random points (left) versus a human attempt at randomness (right). Notice how the random distribution has visible clusters and gaps—exactly what statistical randomness produces. The human-generated pattern feels more evenly distributed, which is precisely why humans are bad at intuiting randomness.
 
@@ -125,7 +125,7 @@ Yet this isn't rare. Run 10,000 simulations and a streak of 7+ happens in about 
 
 <div align="center">
 
-<img src="../../../assets/images/1.2-longest-streak-distribution.png" alt="Distribution of longest streaks in 100 coin flips" width="700">
+<img src="../../../assets/images/1.2-longest-streak-distribution.png" alt="Distribution of longest streaks in 100 coin flips" style="width: 50%">
 
 **Figure 1.2:** Distribution of longest streaks in 100 coin flips across 10,000 simulations. The mean is approximately 7, and streaks of 10 or more occur regularly. This distribution captures the clustering illusion: randomness naturally produces the "rare" patterns we expect not to see.
 
@@ -137,7 +137,7 @@ This is the clustering illusion: when randomness creates the very clusters we ex
 
 <div align="center">
 
-<img src="../../../assets/images/1.3-london-bomb-impacts.png" alt="V-2 Rocket Impacts on London (1944-1945)" width="450">
+<img src="../../../assets/images/1.3-london-bomb-impacts.png" alt="V-2 Rocket Impacts on London (1944-1945)" style="width: 50%">
 
 **Figure 1.3:** Map of V-2 rocket impacts on London during WWII. Impacts appear clustered in certain areas, which led residents and military observers to suspect intentional targeting. Statistical analysis confirmed the clustering was consistent with random placement—a striking example of how randomness *appears* nonrandom.
 
@@ -203,7 +203,7 @@ $$P(\text{match}) = 1 - 0.507 = 0.493 \approx 50\%$$
 
 <div align="center">
 
-<img src="../../../assets/images/1.4-birthday-paradox.png" alt="The Birthday Paradox: Probability of a Shared Birthday" width="600">
+<img src="../../../assets/images/1.4-birthday-paradox.png" alt="The Birthday Paradox: Probability of a Shared Birthday" style="width: 50%">
 
 **Figure 1.4:** Probability of at least two shared birthdays as a function of group size. Notice the sharp transition around 20–25 people. This counterintuitive curve shows why coincidences are inevitable when you have many opportunities for them to occur.
 
