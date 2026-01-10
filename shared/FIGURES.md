@@ -1,283 +1,407 @@
 # Figure Management System
 
-A centralized, configuration-driven system for generating, styling, and exporting publication-quality figures for the "Joy of Randomness" project.
+The current approach for generating publication-quality figures across all chapters.
 
 ## Overview
 
-This system provides:
-- **Consistent styling**: Global SciencePlots styling (science style) applied to all figures
-- **Automatic naming**: Figures automatically named `{part}.{chapter}.{figure_num}.png` (e.g., `1.1.1.png`, `2.3.2.png`)
-- **Central configuration**: Margin and styling settings managed in one place
-- **Easy integration**: Simple context manager API for figure creation
-- **Organized output**: All figures exported to `assets/images/`
+All figures are generated using **Python with Matplotlib and SciencePlots styling**. This provides:
+- **Consistent styling**: SciencePlots "science" style applied globally
+- **Simplified naming**: Figures named `X.Y.png` (chapter.figure_num)
+- **Decentralized generation**: Each chapter manages its own figures
+- **Local storage**: Figures stored in each chapter's `src/figures/` directory
+- **Publication quality**: 300 DPI PNG export suitable for print/web
+
+## Quick Start
+
+### Generate figures for a chapter:
+
+```bash
+cd chapters/part-X/YY-chapter-name/
+python src/generate_figures.py
+```
+
+This generates PNG files in `src/figures/` with names like `1.1.png`, `1.2.png`, etc.
 
 ## Architecture
 
-### Key Modules
+### Directory Structure
 
-**[shared/figures.py](figures.py)**
-- `FigureManager` class: Handles figure creation, styling, and export
-- `figure()` context manager: Convenient API for creating figures
-- Global manager instance for simplicity
-
-**[shared/figure_config.py](figure_config.py)**
-- `DEFAULT_MARGIN_PAD`: Global margin padding (default 1.5)
-- `SCIENCE_STYLE`: SciencePlots style to use (set to "science")
-- `CHAPTER_METADATA`: Registry of all chapters in the project
-- `validate_figure_reference()`: Ensures figures are registered before use
-
-**[shared/plotting.py](plotting.py)**
-- `histogram()`: Styled histogram plotting
-- `line_plot()`: Styled line plot
-- `scatter_plot()`: Styled scatter plot
-
-## Usage
-
-### Basic Usage
-
-```python
-from shared.figures import figure
-import matplotlib.pyplot as plt
-
-# Create and save a figure
-with figure(1, 1, 1) as fig:
-    ax = fig.add_subplot(111)
-    ax.plot([1, 2, 3], [1, 4, 9])
-    ax.set_title("My Figure")
-    ax.set_xlabel("X-axis")
+```
+chapters/
+├── part-1-intuition/
+│   ├── 01-the-pattern-seeking-mind/
+│   │   ├── src/
+│   │   │   ├── generate_figures.py    (* Figure generation script *)
+│   │   │   └── figures/
+│   │   │       ├── 1.1.png            (* Chapter 1, Figure 1 *)
+│   │   │       ├── 1.2.png            (* Chapter 1, Figure 2 *)
+│   │   │       ├── 1.3.png
+│   │   │       ├── 1.4.png
+│   │   │       └── 1.5.png
+│   │   └── README.md
+│   └── 02-what-does-random-look-like/
+│       ├── src/
+│       │   ├── generate_figures.py
+│       │   └── figures/
+│       │       ├── 2.1.png
+│       │       ├── 2.2.png
+│       │       ├── 2.3.png
+│       │       ├── 2.4.png
+│       │       └── 2.5.png
+│       └── README.md
 ```
 
-This automatically:
-- Creates a figure with SciencePlots styling
-- Saves it to `assets/images/1.1.1.png` (300 DPI)
-- Applies margin padding (1.5 by default)
-- Cleans up resources
+### Figure Naming Convention
 
-### With Custom Sizing and Margins
+Figures use simple naming: `X.Y.png`
+
+- **X** = Chapter number (1, 2, 3, etc.)
+- **Y** = Figure number within chapter (1, 2, 3, etc.)
+
+**Examples:**
+- `1.1.png` — Chapter 1, Figure 1
+- `1.5.png` — Chapter 1, Figure 5
+- `2.3.png` — Chapter 2, Figure 3
+- `15.7.png` — Chapter 15, Figure 7
+
+This simplified naming replaces the previous scheme `part.chapter.figure` (e.g., `1.2.1.png`), which was redundant.
+
+## Creating Figures: Standard Template
+
+### Basic Structure
+
+Each chapter's `src/generate_figures.py` follows this pattern:
 
 ```python
-with figure(1, 1, 2, figsize=(12, 8), margin_pad=2.0) as fig:
-    ax = fig.add_subplot(111)
-    # ... plot code ...
-```
-
-### Using Plotting Utilities
-
-```python
-from shared.figures import figure
-from shared.plotting import histogram, line_plot
 import matplotlib.pyplot as plt
+import matplotlib
+import random
+import statistics
+import os
 
-with figure(2, 4, 3) as fig:
+# Configure matplotlib with SciencePlots
+matplotlib.style.use('science')
+plt.rcParams['font.size'] = 11
+plt.rcParams['axes.linewidth'] = 1.2
+plt.rcParams['xtick.direction'] = 'in'
+plt.rcParams['ytick.direction'] = 'in'
+
+OUTPUT_DIR = 'src/figures'
+
+def save_figure(fig, filename):
+    """Save figure with consistent settings."""
+    os.makedirs(OUTPUT_DIR, exist_ok=True)
+    filepath = os.path.join(OUTPUT_DIR, filename)
+    fig.tight_layout(pad=1.5)
+    fig.savefig(filepath, dpi=300, bbox_inches='tight')
+    print(f"✓ Saved figure: {filepath}")
+    plt.close(fig)
+
+
+def generate_figure_X_Y():
+    """
+    Figure X.Y: [Figure Title]
+    [Brief description of what this visualization shows]
+    """
+    # Generate or load data
+    # ... your simulation/data code ...
+    
+    # Create figure
+    fig = plt.figure(figsize=(10, 6))
     ax = fig.add_subplot(111)
     
-    # Using utility function
-    histogram([1, 2, 2, 3, 3, 3, 4], title="My Histogram", xlabel="Value")
+    # ... plotting code ...
+    
+    ax.set_xlabel("X Label")
+    ax.set_ylabel("Y Label")
+    ax.set_title("Figure Title")
+    ax.grid(True, alpha=0.3)
+    
+    save_figure(fig, "X.Y.png")
+
+
+def generate_all_figures():
+    """Generate all figures for this chapter."""
+    print("Generating Chapter X figures...")
+    print()
+    
+    print("Generating Figure X.1: [Title]")
+    generate_figure_X_1()
+    
+    print("Generating Figure X.2: [Title]")
+    generate_figure_X_2()
+    
+    # ... more figures ...
+    
+    print()
+    print("All figures generated successfully!")
+
+
+if __name__ == "__main__":
+    generate_all_figures()
 ```
 
-## Naming Convention
+## Styling Standards
 
-Figures follow the pattern: `{part}.{chapter}.{figure_num}.png`
+All figures use consistent styling via **SciencePlots**:
 
-Examples:
-- Part 1, Chapter 1, Figure 1: `1.1.1.png`
-- Part 2, Chapter 4, Figure 2: `2.4.2.png`
-- Part 6, Chapter 18, Figure 5: `6.18.5.png`
+- **Style:** `science` (from SciencePlots package)
+- **DPI:** 300 (publication quality)
+- **Default figsize:** (10, 6) inches
+- **Font size:** 11pt (auto-scaled by SciencePlots)
+- **Margins:** `tight_layout(pad=1.5)` by default
+- **Grid:** Light gray with alpha=0.3 when helpful
 
-**Key points:**
-- Each chapter starts counting at figure 1
-- Figure numbering restarts for each chapter
-- Parts and chapters must be registered in `CHAPTER_METADATA`
-
-## Configuration
-
-### Global Settings
-
-Edit [shared/figure_config.py](figure_config.py):
+### Customizing Figure Size
 
 ```python
-# Margin padding (tight_layout pad)
-DEFAULT_MARGIN_PAD = 1.5
+# Larger figure
+fig = plt.figure(figsize=(12, 8))
+ax = fig.add_subplot(111)
+# ... plotting code ...
+save_figure(fig, "X.Y.png")
 
-# SciencePlots style
-SCIENCE_STYLE = "science"
-
-# Figure size (width, height in inches)
-# Note: Not in config, but in FigureManager.__init__()
-figsize = (10, 6)
+# Multi-panel layout
+fig = plt.figure(figsize=(14, 6))
+ax1 = fig.add_subplot(121)
+ax2 = fig.add_subplot(122)
+# ... plotting code ...
+save_figure(fig, "X.Y.png")
 ```
 
-### Per-Figure Overrides
+## Common Figure Patterns
+
+### Histogram with Distribution Overlay
 
 ```python
-# Larger figure with more margin
-with figure(1, 1, 4, figsize=(14, 10), margin_pad=2.5) as fig:
-    # ... plot code ...
+def generate_figure_X_Y():
+    """Figure X.Y: Histogram with overlay"""
+    data = [random.random() for _ in range(10000)]
+    
+    fig = plt.figure(figsize=(10, 6))
+    ax = fig.add_subplot(111)
+    
+    ax.hist(data, bins=30, edgecolor='black', alpha=0.7, color='steelblue')
+    ax.axvline(statistics.mean(data), color='red', linestyle='--', 
+               linewidth=2, label=f"Mean: {statistics.mean(data):.2f}")
+    
+    ax.set_xlabel("Value")
+    ax.set_ylabel("Frequency")
+    ax.set_title("Distribution")
+    ax.legend()
+    ax.grid(True, alpha=0.3)
+    
+    save_figure(fig, "X.Y.png")
 ```
 
-## Chapter Integration
+### Multi-Panel Layout
 
-### Pattern for Adding Figures to a Chapter
+```python
+def generate_figure_X_Y():
+    """Figure X.Y: Two related plots"""
+    fig = plt.figure(figsize=(14, 5))
+    
+    # Left panel
+    ax1 = fig.add_subplot(121)
+    ax1.plot([1, 2, 3, 4], [1, 4, 9, 16], linewidth=2)
+    ax1.set_xlabel("X")
+    ax1.set_ylabel("Y")
+    ax1.set_title("Panel 1")
+    ax1.grid(True, alpha=0.3)
+    
+    # Right panel
+    ax2 = fig.add_subplot(122)
+    ax2.scatter([1, 2, 3, 4], [1, 4, 9, 16], s=100, alpha=0.6)
+    ax2.set_xlabel("X")
+    ax2.set_ylabel("Y")
+    ax2.set_title("Panel 2")
+    ax2.grid(True, alpha=0.3)
+    
+    fig.suptitle("Two Panel Figure", fontsize=14, y=1.02)
+    
+    save_figure(fig, "X.Y.png")
+```
 
-1. **Add generation function** to `simulations.py`:
-   ```python
-   def generate_figure_X_Y(arg1, arg2):
-       """Figure X.Y.Z: Description"""
-       # ... generate data ...
-       with figure(x, y, z) as fig:
-           ax = fig.add_subplot(111)
-           # ... plot code ...
-   ```
+## Integrating Figures into Chapter README
 
-2. **Add to generation script**:
-   ```python
-   def generate_all_figures():
-       print("Generating Chapter X figures...")
-       generate_figure_X_Y()
-       # ... more figures ...
-   ```
+### Proper HTML Structure
 
-3. **Update README** with:
-   - Quick-start instructions
-   - Figure index table
-   - Image links using new naming scheme
+All images in chapter READMEs should follow this format:
 
-4. **Update figure_config.py** if needed:
-   - Add chapter to `CHAPTER_METADATA` if not present
+```markdown
+<div align="center">
 
-### Example: Chapter 1
+<img src="./src/figures/X.Y.png" alt="[Description of what the figure shows]" width="600">
 
-See [chapters/part-1-intuition/01-the-pattern-seeking-mind/](../chapters/part-1-intuition/01-the-pattern-seeking-mind/) for a complete reference implementation.
+**Figure X.Y:** [Complete caption describing what is shown, what to observe, and why it matters.]
 
-Running figures:
+</div>
+```
+
+**Important:**
+- Image path must be `./src/figures/` (relative, not absolute)
+- All images must have `width="600"` attribute
+- Wrapped in `<div align="center">` for centering
+- Descriptive captions with pedagogical value
+- Alt text for accessibility
+
+### Example
+
+```markdown
+<div align="center">
+
+<img src="./src/figures/2.1.png" alt="Distribution of longest streaks in 100 coin flips" width="600">
+
+**Figure 2.1:** Distribution of longest streaks across 10,000 sequences of 100 coin flips. Notice how most sequences have their longest streak between 6 and 8 flips. This is the signature of a fair coin: expect a run of about 7 in 100 flips.
+
+</div>
+```
+
+## Workflow: Adding a New Figure
+
+### Step 1: Add Function to `src/generate_figures.py`
+
+```python
+def generate_figure_X_Y():
+    """
+    Figure X.Y: [Title]
+    [Description]
+    """
+    # ... implementation ...
+    save_figure(fig, "X.Y.png")
+```
+
+### Step 2: Register in `generate_all_figures()`
+
+```python
+def generate_all_figures():
+    print("Generating Chapter X figures...")
+    print()
+    
+    # ... existing figures ...
+    
+    print("Generating Figure X.Y: [Title]")
+    generate_figure_X_Y()
+    
+    print()
+    print("All figures generated successfully!")
+```
+
+### Step 3: Generate and Verify
+
 ```bash
-cd chapters/part-1-intuition/01-the-pattern-seeking-mind/
-python simulations.py --generate-figures
+cd chapters/part-X/YY-chapter-name/
+python src/generate_figures.py
+# Check that src/figures/X.Y.png was created
 ```
 
-## Styling Details
+### Step 4: Add to Chapter README
 
-### SciencePlots Configuration
+```markdown
+<div align="center">
 
-The system uses the **"science"** style from [SciencePlots](https://github.com/garrettj403/SciencePlots), which provides:
-- Professional typography
-- Optimized colors
-- Clean grid lines
-- Proper figure proportions
+<img src="./src/figures/X.Y.png" alt="[Description]" width="600">
 
-Style applied globally in `FigureManager._setup_styling()`:
-```python
-plt.style.use("science")
+**Figure X.Y:** [Caption]
+
+</div>
 ```
 
-### Margin Configuration
+### Step 5: Commit
 
-Margins are controlled via matplotlib's `tight_layout(pad=...)`:
-- `pad=1.0`: Minimal margins (1 inch spacing)
-- `pad=1.5`: Default (moderate spacing)
-- `pad=2.0+`: Extra space around plots
-
-Larger margins useful for:
-- Figures with long axis labels
-- Multi-subplot layouts
-- Dense legend boxes
-
-## API Reference
-
-### `figure(part, chapter, figure_num, figsize=None, margin_pad=None, **kwargs)`
-
-Context manager for creating figures.
-
-**Parameters:**
-- `part` (int): Part number (1-6)
-- `chapter` (int): Chapter number (1-18)
-- `figure_num` (int): Figure number within chapter (≥1)
-- `figsize` (tuple): Optional (width, height), defaults to (10, 6)
-- `margin_pad` (float): Optional padding override
-- `**kwargs`: Passed to `plt.figure()`
-
-**Returns:**
-- matplotlib Figure object
-
-**Raises:**
-- `ValueError`: If (part, chapter) not in CHAPTER_METADATA
-
-### `FigureManager.save(fig, part, chapter, figure_num, margin_pad=None)`
-
-Manually save a figure (usually called automatically by context manager).
-
-**Parameters:**
-- `fig`: matplotlib Figure object
-- `part`, `chapter`, `figure_num`: Figure identification
-- `margin_pad`: Optional override of default padding
-
-### `get_chapter_metadata(part, chapter)`
-
-Retrieve metadata for a chapter.
-
-**Returns:**
-- Dict with keys: `title`, `part` (name)
+```bash
+git add chapters/part-X/YY-chapter-name/src/
+git commit -m "feat(chapter-X): add Figure X.Y [description]"
+git push
+```
 
 ## Troubleshooting
 
-### Figure not being saved
+### SciencePlots not installed
 
-Check:
-1. Is the chapter registered in `CHAPTER_METADATA`?
-2. Is `assets/images/` writable?
-3. Are part/chapter/figure numbers valid integers?
-
-```python
-# Debug: Check if chapter is registered
-from shared.figure_config import validate_figure_reference
-validate_figure_reference(1, 1, 1)  # Raises ValueError if not registered
-```
-
-### Styling not applied
-
-Ensure SciencePlots is installed:
 ```bash
 pip install scienceplots
 ```
 
-Verify in Python:
+### Figures not being saved
+
+Check:
+1. Is `src/figures/` directory writable?
+2. Is `OUTPUT_DIR` set correctly?
+3. Are part/chapter/figure numbers valid?
+
+### Styling not applied
+
+Verify SciencePlots is imported:
 ```python
-import scienceplots
+import matplotlib
+matplotlib.style.use('science')
 import matplotlib.pyplot as plt
-plt.style.use("science")
-print(plt.style.available)  # Should include "science"
 ```
 
-### Figures too small or too large
+### Figure text too small/large
 
-Adjust `figsize` parameter:
+Adjust font size:
 ```python
-with figure(1, 1, 1, figsize=(16, 10)) as fig:
-    # 16 inches wide, 10 inches tall
+plt.rcParams['font.size'] = 12  # Default is 11
+```
+
+Or adjust individual elements:
+```python
+ax.set_xlabel("Label", fontsize=13)
+ax.set_title("Title", fontsize=14)
 ```
 
 ### Labels getting cut off
 
 Increase margin padding:
 ```python
-with figure(1, 1, 1, margin_pad=2.5) as fig:
-    # More space around content
+fig.tight_layout(pad=2.0)  # Increase from default 1.5
 ```
+
+## Export Standards
+
+### PNG (Standard Format)
+
+- **Resolution:** 300 DPI (publication quality)
+- **Format:** 8-bit RGB with lossless compression
+- **Typical width:** 1200–1600px
+- **Location:** `chapters/part-X/YY-chapter-name/src/figures/X.Y.png`
+
+Saved via `save_figure()`:
+```python
+def save_figure(fig, filename):
+    fig.tight_layout(pad=1.5)
+    fig.savefig(filepath, dpi=300, bbox_inches='tight')
+    plt.close(fig)
+```
+
+## Checklist: Before Committing a Figure
+
+- [ ] Figure function implemented in `src/generate_figures.py`
+- [ ] Function added to `generate_all_figures()`
+- [ ] Script runs without errors
+- [ ] PNG file generated at `src/figures/X.Y.png`
+- [ ] Image link in README uses `./src/figures/X.Y.png`
+- [ ] Image tag includes `width="600"` attribute
+- [ ] Image wrapped in `<div align="center">` with caption
+- [ ] Caption is clear and pedagogically useful
+- [ ] Alt text is descriptive
+- [ ] Both script and PNG files committed to git
+- [ ] Commit message follows pattern: `feat(chapter-X): add Figure X.Y [description]`
 
 ## Best Practices
 
-1. **Use descriptive figure function names**: `generate_figure_X_Y_description()`
-2. **Add docstrings**: Document what each figure shows
-3. **Use consistent sizing**: Keep similar figures same size
-4. **Test locally**: Generate figures and verify appearance before committing
-5. **Version control**: Commit `.png` files to preserve publication state
-6. **Update README**: Link new figures with updated asset names
+1. **Clear function names:** Use `generate_figure_X_Y_description()`
+2. **Docstrings:** Document what each figure shows
+3. **Consistent sizing:** Keep related figures at same size
+4. **Test locally:** Verify appearance before committing
+5. **Version control:** Commit both script and PNG files
+6. **Update README:** Always link figures in chapter content
+7. **Descriptive captions:** Explain what to observe and why it matters
 
-## Future Enhancements
+## Resources
 
-Potential improvements:
-- SVG export option for scalability
-- Figure metadata sidecar files (JSON with description, source data, etc.)
-- Automated figure gallery generation
-- Cross-chapter figure references
-- Figure caching to avoid re-rendering
+- **SciencePlots:** https://github.com/garrettj403/SciencePlots
+- **Matplotlib:** https://matplotlib.org/stable/users/index.html
+- **Matplotlib Color Maps:** https://matplotlib.org/stable/tutorials/colors/colormaps.html
