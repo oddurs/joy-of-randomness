@@ -44,6 +44,14 @@ $$X = -\frac{1}{\lambda} \ln(U)$$
 
 is the inverse transform.
 
+<div align="center">
+
+![Figure 12.1: Inverse Transform Sampling](src/figures/12.1.png)
+
+**Figure 12.1:** The inverse transform method: (top left) The CDF F(x) and how to invert it; (top right) uniform inputs U; (bottom left) transformed exponential outputs matching the theoretical PDF; (bottom right) Q-Q plot showing perfect match between sample and theoretical quantiles.
+
+</div>
+
 ### Why This Works: The Probability Integral Transform
 
 **Theorem:** If U ~ Uniform(0, 1) and F is a continuous CDF, then $X = F^{-1}(U)$ has CDF F.
@@ -117,6 +125,14 @@ For d = 10, the acceptance rate might drop to 1%. For d = 50, it could be 10^(-1
 
 **This is the curse of dimensionality again.** Our simple sampling methods fail in high dimensions.
 
+<div align="center">
+
+![Figure 12.2: Rejection Sampling](src/figures/12.2.png)
+
+**Figure 12.2:** Left: Rejection sampling for Beta(2,2) using uniform proposal. Green points are accepted (below the envelope), red are rejected. Right: Acceptance rate vs dimension for rejection sampling with normal target and normal proposal. The exponential collapse shows why rejection sampling is impractical in high dimensions.
+
+</div>
+
 ---
 
 ## The Theory
@@ -151,6 +167,14 @@ For d = 10, the acceptance rate might drop to 1%. For d = 50, it could be 10^(-1
 - Acceptance rate = 1/M
 - Expected number of proposals per accepted sample = M
 - Want M as small as possible (tightest envelope)
+
+<div align="center">
+
+![Figure 12.3: Proposal Efficiency Comparison](src/figures/12.3.png)
+
+**Figure 12.3:** Left: Three different proposals for rejection sampling from N(0,1)—Exponential with M≈0.8, Uniform with M≈2.5, and Laplace with M≈1.2. The Laplace proposal matches the normal shape better, resulting in lower rejection. Right: Acceptance rates (1/M) for each proposal, showing that choice of proposal distribution can dramatically affect efficiency.
+
+</div>
 
 **Pros:**
 - Works for any distribution you can evaluate
@@ -189,6 +213,14 @@ The idea: stack horizontal strips of decreasing width, like a ziggurat.
 - Result: very fast, efficient sampling
 
 This is widely used in practice (e.g., in NumPy's normal sampling).
+
+<div align="center">
+
+![Figure 12.4: Ziggurat Algorithm](src/figures/12.4.png)
+
+**Figure 12.4:** The ziggurat algorithm for fast normal sampling. Horizontal strips of decreasing width stack like a ziggurat. Most samples come from the largest strip (L1) with no rejection test needed. Larger strips have higher acceptance probability, so the algorithm is faster than uniform rejection sampling while being nearly as efficient.
+
+</div>
 
 ### Why Rejection Sampling Fails in High Dimensions
 
