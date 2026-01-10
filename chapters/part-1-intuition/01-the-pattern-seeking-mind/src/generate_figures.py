@@ -11,7 +11,11 @@ from pathlib import Path
 import sys
 import matplotlib
 import matplotlib.pyplot as plt
-matplotlib.rcParams['text.usetex'] = False  # Disable LaTeX to avoid dependency
+import scienceplots  # noqa: F401
+
+matplotlib.use('Agg')
+matplotlib.rcParams['text.usetex'] = False
+plt.style.use('science')
 
 # Add shared module to path
 chapter_dir = Path(__file__).parent.parent
@@ -81,7 +85,7 @@ def generate_figure_1_2(num_flips=100, num_simulations=10000):
                 linewidth=2, label=f"Median: {results['median']:.0f}")
     ax.set_xlabel("Length of Longest Streak")
     ax.set_ylabel("Frequency")
-    ax.set_title(f"Distribution of Longest Streaks in {num_flips} Coin Flips")
+    ax.set_title("Distribution of Longest Streaks")
     ax.legend()
     ax.grid(True, alpha=0.3)
     
@@ -135,7 +139,7 @@ def generate_figure_1_4(num_points=200, num_cells=10):
     im = ax.imshow(grid, cmap='YlOrRd', origin='lower', aspect='auto')
     ax.set_xlabel('Cell X')
     ax.set_ylabel('Cell Y')
-    ax.set_title(f'Clustering in Random Data ({num_points} points in {num_cells}×{num_cells} grid)')
+    ax.set_title('Clustering in Random Data')
     
     # Add colorbar
     cbar = fig.colorbar(im, ax=ax)
@@ -173,7 +177,7 @@ def generate_figure_1_5(num_simulations=1000):
                 linewidth=2, label=f"Mean: {statistics.mean(streak_lengths):.1f}")
     ax1.set_xlabel("Longest Streak Length")
     ax1.set_ylabel("Frequency")
-    ax1.set_title(f"Streaks in Random Sequences ({num_simulations} trials)")
+    ax1.set_title("Streaks in Random Sequences")
     ax1.legend()
     ax1.grid(True, alpha=0.3)
     
@@ -184,11 +188,11 @@ def generate_figure_1_5(num_simulations=1000):
                 linewidth=2, label=f"Mean: {statistics.mean(run_counts):.1f}")
     ax2.set_xlabel("Number of Transitions")
     ax2.set_ylabel("Frequency")
-    ax2.set_title(f"Run Transitions in Random Sequences ({num_simulations} trials)")
+    ax2.set_title("Run Transitions in Random Sequences")
     ax2.legend()
     ax2.grid(True, alpha=0.3)
     
-    fig.suptitle("Random Sequences: Streaks and Transitions", fontsize=12, y=1.02)
+    fig.suptitle("Random Sequences: Streaks and Transitions", fontsize=12, y=1.00)
     
     save_figure(fig, "1.5.png")
 
