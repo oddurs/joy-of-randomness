@@ -5,10 +5,18 @@ Defines figure metadata, naming conventions, and default styling settings.
 """
 
 # Default margin/padding for figures (tight_layout pad parameter)
-DEFAULT_MARGIN_PAD = 1.5
+# Higher values = more space around content
+# Typical range: 0.5 (minimal) to 3.0+ (generous)
+DEFAULT_MARGIN_PAD = 4.0
 
 # SciencePlots style to use globally
 SCIENCE_STYLE = "science"
+
+# Default figure size (scaled up for better readability)
+DEFAULT_FIGSIZE = (14, 8)
+
+# Title font size for headers
+DEFAULT_TITLE_FONTSIZE = 14
 
 # Chapter metadata: (part, chapter) -> {metadata}
 CHAPTER_METADATA = {
