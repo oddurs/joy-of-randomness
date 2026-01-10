@@ -95,6 +95,8 @@ Result: thousands of plausible parameter values.
 - Do simulated predictions match real data?
 - Could a different model fit better?
 
+![Figure 18.1: Bayesian linear regression with posterior uncertainty. Top-left: observed recovery times (red dots) with posterior predictive samples (blue lines show uncertainty). Top-right: posterior distribution of slope (age effect) with 95% credible interval. Bottom-left: posterior distribution of intercept (baseline recovery). Bottom-right: residual plot showing no systematic patterns.](src/figures/18.1.png)
+
 ---
 
 ## Patterns Emerge: What We Learn
@@ -128,6 +130,8 @@ Interpretation:
 - Variability around the line is about 2.1 days
 - The slope is uncertain but definitely positive (doesn't include 0)
 
+![Figure 18.2: Bayesian updating from prior to posterior. Top-left: weak prior belief about slope (very wide distribution). Top-right: likelihood from the data (showing strong evidence for slope ~0.28). Bottom-left: posterior combining prior and likelihood (much tighter). Bottom-right: overlay showing how data sharpens our beliefs.](src/figures/18.2.png)
+
 ---
 
 ## The Theory: Building Blocks
@@ -157,6 +161,8 @@ Algorithm:
 If simulations match reality, the model is plausible. If they diverge, the model is misspecified.
 
 Example: if real data has more outliers than simulated data, the model underestimates noise variance.
+
+![Figure 18.3: Posterior predictive checks comparing real data to simulations from the fitted model. Top-left: distribution of simulated samples closely matches observed data. Top-right: mean from simulated posterior samples captures the real data mean. Bottom-left: standard deviation check shows model captures variability. Bottom-right: maximum values align, indicating no systematic misfit.](src/figures/18.3.png)
 
 ### Model Comparison
 
@@ -260,6 +266,8 @@ where $τ$ is the unknown change point day, $μ_1$ and $μ_2$ are mean defects b
 4. Maybe it peaks at day 47 with credible interval [42, 52]
 
 **Result**: "We estimate the process changed around day 47, with 95% confidence between days 42-52. Before the change, mean defects were about 15/day; after, about 8/day."
+
+![Figure 18.4: Change point detection across 100 days of factory defect data. Top-left: raw daily defect counts with true change point at day 47. Top-right: posterior probability peaks near the true change point, with posterior mode at day 48. Bottom-left: posterior estimates of mean defects before (orange) and after (blue) the change. Bottom-right: 95% credible interval [45, 52] correctly captures the true change point.](src/figures/18.4.png)
 
 ---
 
