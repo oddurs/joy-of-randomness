@@ -25,7 +25,7 @@ Let's see this for ourselves. Here's a simple simulation: place 200 random point
 
 <div align="center">
 
-![Clustering Illusion: Truly Random vs Human Random](../../../assets/images/1.1-clustering-illusion.png)
+<img src="../../../assets/images/1.1-clustering-illusion.png" alt="Clustering Illusion: Truly Random vs Human Random" width="700">
 
 **Figure 1.1:** Side-by-side comparison of truly random points (left) versus a human attempt at randomness (right). Notice how the random distribution has visible clusters and gaps—exactly what statistical randomness produces. The human-generated pattern feels more evenly distributed, which is precisely why humans are bad at intuiting randomness.
 
