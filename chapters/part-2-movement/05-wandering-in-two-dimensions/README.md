@@ -90,6 +90,12 @@ Look at that path. It's beautiful—a self-crossing, tangled web that explores t
 
 This single path is unpredictable, but we can already sense something: the walker is never terribly far from the origin. There's a sense that it might wander back.
 
+<div align="center">
+<img src="./src/figures/5.1.png" alt="Single 2D Random Walk" width="700">
+
+**Figure 5.1:** A single 2D random walk of 5000 steps. The path is self-crossing and tangled, yet never ventures too far from the origin—a hint that return might be inevitable.
+</div>
+
 ---
 
 ## Many Walks in Many Dimensions
@@ -178,6 +184,12 @@ Notice the scaling. In 1D, the mean distance is about √n ≈ 31.6. In 2D, it's
 The pattern is simple: in d dimensions, the mean distance from origin grows as √(dn).
 
 But there's something deeper happening that these statistics don't reveal. To see it, we need to track *returns*.
+
+<div align="center">
+<img src="./src/figures/5.2.png" alt="Distance Distributions by Dimension" width="700">
+
+**Figure 5.2:** Final distance from origin after 1000 steps in 1D, 2D, and 3D. The spread increases, and so does the typical final distance, but the pattern is consistent: growth proportional to √(d×n) where d is the dimension and n is the number of steps.
+</div>
 
 ---
 
@@ -381,6 +393,12 @@ plt.show()
 
 These tangled paths are mesmerizing. Each one is completely independent, yet they all seem drawn to the center. This is the magic of Pólya's theorem made visible.
 
+<div align="center">
+<img src="./src/figures/5.3.png" alt="Ensemble of 2D Random Walks" width="700">
+
+**Figure 5.3:** Eight independent 2D random walks of 2000 steps each, overlaid on the same plane. Each path explores independently, yet all remain confined by the√(2n) scaling. The clustering around the origin is no accident—it's a consequence of the dimensional geometry.
+</div>
+
 ---
 
 ## The Theory: Distance Scaling
@@ -566,6 +584,12 @@ plt.show()
 
 The pattern is striking: recurrent (probability 1) in dimensions 1 and 2, then a sharp drop to transience in 3D and beyond. As dimension increases, return probability decreases toward zero.
 
+<div align="center">
+<img src="./src/figures/5.4.png" alt="Return Probability by Dimension" width="700">
+
+**Figure 5.4:** Pólya's recurrence theorem visualized. Return probability transitions sharply from certainty (1.0) in 1D and 2D to ~0.34 in 3D, declining further in higher dimensions. This is one of the most beautiful phase transitions in mathematics.
+</div>
+
 ---
 
 ## The Intuition Behind Pólya
@@ -582,6 +606,12 @@ This is captured in the Green's function:
 $$G(0, 0) = \sum_{n=0}^{\infty} P(\text{at origin at time n})$$
 
 For 1D and 2D, this sum diverges (infinite time spent at origin on average). For 3D+, it converges (finite time spent at origin on average).
+
+<div align="center">
+<img src="./src/figures/5.5.png" alt="First Return Time Distributions" width="700">
+
+**Figure 5.5:** Distribution of first return times for walkers that do return to the origin. In 2D (green), returns happen but can take a very long time—the distribution has a heavy tail. The logarithmic scale reveals that early returns are common, but so are extraordinarily long excursions. This is the signature of a system balanced on the edge of recurrence.
+</div>
 
 ---
 

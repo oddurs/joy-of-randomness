@@ -70,6 +70,12 @@ Look at this track. Does it look random? It has structure: areas where the anima
 
 This is what animal movement looks like in the wild. Now let's ask: how does it compare to our theoretical random walks?
 
+<div align="center">
+<img src="./src/figures/6.1.png" alt="Movement Patterns: Ideal vs Realistic" width="700">
+
+**Figure 6.1:** Three types of movement patterns side-by-side. Left: an ideal random walk fills space uniformly. Center: a realistic animal track with directional persistence and variable step sizes, showing clustering and long transits. Right: a Lévy flight with rare enormous jumps interspersed among small steps. Each has a different spatial signature.
+</div>
+
 ## Patterns Emerge
 
 Let's extract the step lengths from a real-looking track and from a simple random walk, and compare them:
@@ -161,6 +167,12 @@ The ideal random walk has a sharp peak at step size 1 (you either take a step or
 $$P(\text{step} > s) \propto s^{-\alpha}$$
 
 where $\alpha \in (1, 3)$ is the power-law exponent. This says: there are many short steps and occasional enormous jumps.
+
+<div align="center">
+<img src="./src/figures/6.2.png" alt="Step Length Distributions" width="700">
+
+**Figure 6.2:** Step-length distributions for the three movement types. Ideal walk: sharp peak at unit size. Animal track: exponential decay with occasional longer steps. Lévy flight: straight line on log-log plot (power law), indicating rare giants dominating long-range transport.
+</div>
 
 Here's what makes this interesting: the ideal random walk spreads as $\sqrt{n}$, where $n$ is the number of steps. The power law of a Lévy flight means it spreads *faster*. It's not just a minor variation—it's a fundamentally different scaling regime.
 
@@ -275,6 +287,12 @@ plt.show()
 ```
 
 In practice, you'd load real GPS data from a dataset like Movebank and repeat this analysis. You'd find that different species have different exponents: albatrosses cluster around $\alpha \approx 1.6$, while some marine microorganisms show $\alpha$ closer to 2.
+
+<div align="center">
+<img src="./src/figures/6.3.png" alt="Search Efficiency Comparison" width="700">
+
+**Figure 6.3:** Search efficiency: how many targets (scattered resources) can each walker find in a fixed time span? Individual simulations shown as dots (with vertical spread for visualization), mean marked by red line. Lévy flights excel at finding targets in sparse environments, outperforming ideal walks and animal tracks. This explains why nature may have evolved toward power-law movement patterns.
+</div>
 
 ## Rabbit Holes
 

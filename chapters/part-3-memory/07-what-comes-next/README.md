@@ -136,6 +136,12 @@ Better still! Longer sentences with more coherent grammar. But notice: as we inc
 
 This is the fundamental tradeoff: **higher order = more memory = more structure, but eventually you're just reproducing the training data.**
 
+<div align="center">
+<img src="./src/figures/7.1.png" alt="Word Transition Frequencies" width="700">
+
+**Figure 7.1:** How transition probabilities change with Markov order. Left: Order 1 (single word history) gives rough probabilities. Center: Order 2 (word pair history) produces structured pairs. Right: Comparing randomness vs. coherence as order increases—a tradeoff between creativity (disorder) and meaningfulness (structure).
+</div>
+
 ## The Theory
 
 Let's formalize what's happening.
@@ -164,6 +170,12 @@ $$P = \begin{pmatrix}
 
 This says: if you're at "the", you have a 60% chance of "king" next, 30% of "queen", 10% of "the" again.
 
+<div align="center">
+<img src="./src/figures/7.2.png" alt="Transition Matrix Properties" width="700">
+
+**Figure 7.2:** Left: Transition matrix visualized as a heatmap. Each cell shows the probability of moving from one state (row) to another (column). Right: How the probability distribution over states evolves over time (different initial states colored differently). Eventually, all paths converge to the same stationary distribution—the long-run frequencies determined purely by the matrix structure.
+</div>
+
 **Powers of the matrix:**
 If we want to know the probability of transitioning from state $i$ to state $j$ in exactly $n$ steps, we compute $P^n$. This is useful for long-range predictions.
 
@@ -173,6 +185,12 @@ After many transitions, the probability distribution over states settles into a 
 $$\pi P = \pi$$
 
 In other words, applying one more transition doesn't change the distribution. For text, this represents the long-run frequency of each word. The "start state" gets forgotten—we reach a steady state determined by the transition matrix itself.
+
+<div align="center">
+<img src="./src/figures/7.3.png" alt="Generated Text Samples by Order" width="700">
+
+**Figure 7.3:** Generated text samples from Markov chains of increasing order. Order 1 produces gibberish. Order 2 shows structure emerging. Order 3 becomes nearly human-readable. This illustrates the fundamental tension: low orders are creative but incoherent, high orders are coherent but memorized. The sweet spot depends on your goal.
+</div>
 
 ## Going Deeper
 

@@ -74,6 +74,12 @@ Output might be:
 
 This looks vaguely like real weather: sunny days cluster together, rain comes and goes, there's a natural rhythm.
 
+<div align="center">
+<img src="./src/figures/8.1.png" alt="Weather Transition Matrix and Simulation" width="700">
+
+**Figure 8.1:** Left: Transition matrix visualized as a color-coded heatmap. Warmer colors = higher probability. Notice the strong diagonals (persistence—weather tends to continue). Right: A 100-day weather simulation using the matrix. Colored dots show transitions: gold (Sunny), gray (Cloudy), blue (Rainy). The sequence looks natural, with clusters of similar weather.
+</div>
+
 ---
 
 ## Patterns Emerge: The Markov Tradeoff
@@ -130,6 +136,12 @@ This is the **stationary distribution**. It has a magical property: $πP = π$.
 What does this mean? If today's weather follows the stationary distribution (44% sunny, 33% cloudy, 23% rainy), then tomorrow's weather will *also* follow the same distribution.
 
 Over the long run, the weather settles into this distribution regardless of where you started. Started on a rainy day? After 1000 days, you'll see roughly 44% sunny, 33% cloudy, 23% rainy. The chain "forgets" where it began.
+
+<div align="center">
+<img src="./src/figures/8.2.png" alt="Stationary Distribution and Convergence" width="700">
+
+**Figure 8.2:** Left: The stationary distribution π—the long-run frequencies: 44% Sunny, 33% Cloudy, 23% Rainy. Right: Convergence to this distribution starting from each state. No matter where you begin (Sunny, Cloudy, or Rainy), the probability of being in any given state converges to the stationary value. The chain has "amnesia"—it forgets its initial state.
+</div>
 
 ---
 
@@ -277,6 +289,12 @@ The **average wait time** in an M/M/1 queue is:
 $$W = \frac{1}{\mu - \lambda}$$
 
 This is one of the most important formulas in operations research. It tells you how many cashiers you need in a store, how many servers you need in a data center, etc.
+
+<div align="center">
+<img src="./src/figures/8.3.png" alt="Applications of Markov Chains" width="700">
+
+**Figure 8.3:** Three real-world applications. Left: DNA evolution—bases mutate with certain transition probabilities. Center: A queue system (M/M/1)—the probability that the queue has different lengths in steady state. Right: The web as a Markov chain (PageRank)—page popularity based on the stationary distribution of random walks through links. Same math, wildly different domains.
+</div>
 
 ---
 
