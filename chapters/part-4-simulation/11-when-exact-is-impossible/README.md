@@ -66,6 +66,14 @@ estimate = monte_carlo_integrate_nd(f_100d, [(0, 1)] * 100, 10_000)
 
 Same code. Same 10,000 samples. Works in 1D, works in 100D. The error is still 1/√n, independent of dimension.
 
+<div align="center">
+
+![Figure 11.1: Grid vs Monte Carlo Complexity](src/figures/11.1.png)
+
+**Figure 11.1:** The exponential scaling gap between grid methods (exponential in dimension) and Monte Carlo (linear in samples). Grid methods win for low dimensions but become impossible beyond d~5. Monte Carlo barely notices the extra dimensions—same 10,000 samples work equally well in 1D or 100D.
+
+</div>
+
 ---
 
 ## Patterns Emerge: The Exponential Divide
@@ -111,6 +119,14 @@ Grid methods are faster for low dimensions (say, d ≤ 3). But as d increases, M
 
 In high dimensions, the grid method doesn't just become slow—it becomes impossible. Monte Carlo, meanwhile, barely notices the extra dimensions.
 
+<div align="center">
+
+![Figure 11.4: Hypersphere Volumes Peak Then Vanish](src/figures/11.4.png)
+
+**Figure 11.4:** A counterintuitive result: the volume of a unit ball in d dimensions first increases (peaking around d=5-6), then decreases toward zero. In 100 dimensions, almost no volume remains near the center—it's all concentrated at the boundary. Grid methods that try to discretize this space must account for the entire hypercube while the actual ball shrinks away. Monte Carlo, indifferent to these geometric intricacies, samples uniformly and converges at constant rate.
+
+</div>
+
 ---
 
 ## The Theory: Why Grids Fail in High Dimensions
@@ -131,6 +147,14 @@ The interior is the cube [0.1, 0.9]^d, which has volume (0.8)^d.
 - d = 100: (0.8)^100 ≈ 10^(-10) (essentially none)
 
 In high dimensions, almost all the volume is near the boundary!
+
+<div align="center">
+
+![Figure 11.2: Volume and Distance Concentration](src/figures/11.2.png)
+
+**Figure 11.2:** Left: Interior volume (distance > 0.1 from boundaries) vanishes exponentially in dimension. At d=10, only 11% of the cube is in the interior; at d=20, less than 1%. Right: All pairwise distances in a random point cloud become increasingly similar—in d=50, distances are within 12% of each other, making "distance" almost meaningless.
+
+</div>
 
 ### Distance Concentration
 
@@ -214,6 +238,14 @@ d = 1000: angle ≈ 89.99°
 ```
 
 In 1000 dimensions, nearly all vectors are perpendicular!
+
+<div align="center">
+
+![Figure 11.3: Random Vectors Become Nearly Orthogonal](src/figures/11.3.png)
+
+**Figure 11.3:** In increasing dimensions, random vectors become increasingly orthogonal. At d=2, angles average ~67°. By d=10, they're ~88°. Beyond d=100, nearly all random vectors are perpendicular (90°). This geometric fact underlies why high-dimensional data behaves counterintuitively—orthogonality is the "natural" relationship between random vectors.
+
+</div>
 
 ### Distance Concentration
 
