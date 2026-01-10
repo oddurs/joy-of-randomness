@@ -262,6 +262,14 @@ But with random variation, you're *guaranteed* to find clusters somewhere if you
 
 This is the base rate problem: you see clusters and assume a cause, forgetting that clusters are the default when randomness is at work.
 
+<div align="center">
+
+<img src="./src/figures/1.4.png" alt="Clustering in a Grid" width="600">
+
+**Figure 1.4:** A 10×10 grid filled with 200 random points. The visible clustering and gaps are exactly what we expect from randomness. Our pattern-seeking brain interprets these clusters as meaningful, but they're simply the natural outcome of independent random placement. This is the clustering illusion made visual.
+
+</div>
+
 ### The Birthday Paradox
 
 Here's a light version of the same idea. In a group of 23 people, what's the probability that two share a birthday?
@@ -299,6 +307,14 @@ But we need to ask the hard question: does our intuition match reality?
 Recently, some researchers challenged the consensus. Maybe the hot hand is real. Maybe basketball players *do* perform differently after a streak. Maybe our intuition wasn't entirely wrong.
 
 This is a genuinely open question. But what's *not* open: our intuitions are miscalibrated. We see hot hands everywhere, even in coin flips. So even if the effect is real, we probably overestimate it.
+
+<div align="center">
+
+<img src="./src/figures/1.5.png" alt="Streaks and Transitions in Random Sequences" width="600">
+
+**Figure 1.5:** Left panel: distribution of longest streaks across 1,000 random sequences of 100 flips each. Right panel: distribution of transition counts (runs) in the same sequences. Notice how naturally streaky randomness is—longest streaks commonly reach 8-10, and runs vary from roughly 40-60. This demonstrates why we're fooled into seeing patterns everywhere: randomness itself looks streaky.
+
+</div>
 
 ### The Gambler's Fallacy
 
