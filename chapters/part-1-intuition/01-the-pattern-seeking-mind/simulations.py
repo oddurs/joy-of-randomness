@@ -3,6 +3,8 @@ Simulations for Chapter 1: The Pattern-Seeking Mind
 
 Demonstrations of the clustering illusion, birthday paradox,
 and related phenomena in randomness.
+
+For figure generation, see src/generate_figures.py
 """
 
 import random
@@ -25,28 +27,6 @@ def generate_random_points(num_points, seed=None):
     if seed is not None:
         random.seed(seed)
     return [(random.random(), random.random()) for _ in range(num_points)]
-
-
-def plot_random_points(num_points=200, title="Random Points in a Square"):
-    """
-    Generate and visualize random points.
-    
-    Args:
-        num_points: Number of points to plot
-        title: Title for the plot
-    """
-    points = generate_random_points(num_points)
-    x = [p[0] for p in points]
-    y = [p[1] for p in points]
-    
-    plt.figure(figsize=(8, 8))
-    plt.scatter(x, y, s=30, alpha=0.6, color='steelblue')
-    plt.xlim(-0.05, 1.05)
-    plt.ylim(-0.05, 1.05)
-    plt.gca().set_aspect('equal')
-    plt.title(title)
-    plt.grid(True, alpha=0.3)
-    plt.show()
 
 
 def longest_streak(flips):
@@ -100,36 +80,6 @@ def simulate_coin_flips(num_flips, num_simulations=10000):
         'max': max(streaks),
         'distribution': streaks
     }
-
-
-def plot_streak_distribution(num_flips=100, num_simulations=10000):
-    """
-    Generate and plot the distribution of longest streaks.
-    
-    Args:
-        num_flips: Number of flips per simulation
-        num_simulations: Number of simulations to run
-    """
-    results = simulate_coin_flips(num_flips, num_simulations)
-    
-    plt.figure(figsize=(10, 6))
-    plt.hist(results['distribution'], bins=30, edgecolor='black', alpha=0.7)
-    plt.axvline(results['mean'], color='red', linestyle='--', 
-                linewidth=2, label=f"Mean: {results['mean']:.1f}")
-    plt.axvline(results['median'], color='green', linestyle='--', 
-                linewidth=2, label=f"Median: {results['median']:.0f}")
-    plt.xlabel("Length of Longest Streak")
-    plt.ylabel("Frequency")
-    plt.title(f"Distribution of Longest Streaks in {num_flips} Coin Flips\n(10,000 simulations)")
-    plt.legend()
-    plt.grid(True, alpha=0.3)
-    plt.show()
-    
-    print(f"Results for {num_flips} coin flips:")
-    print(f"  Mean longest streak: {results['mean']:.2f}")
-    print(f"  Median: {results['median']:.0f}")
-    print(f"  Std dev: {results['stdev']:.2f}")
-    print(f"  Range: {results['min']} to {results['max']}")
 
 
 def compare_human_vs_random(human_sequence_str, num_simulations=1000):
@@ -201,31 +151,6 @@ def simulate_birthdays(num_people, num_simulations=10000):
             matches += 1
     
     return matches / num_simulations
-
-
-def plot_birthday_problem():
-    """
-    Plot the probability of shared birthdays as group size increases.
-    """
-    group_sizes = range(2, 101)
-    probabilities = [birthday_probability(n) for n in group_sizes]
-    
-    plt.figure(figsize=(10, 6))
-    plt.plot(group_sizes, probabilities, linewidth=2, color='steelblue')
-    plt.axhline(0.5, color='red', linestyle='--', alpha=0.5, label='50%')
-    plt.axvline(23, color='green', linestyle='--', alpha=0.5, label='23 people')
-    plt.xlabel("Number of People")
-    plt.ylabel("Probability of Shared Birthday")
-    plt.title("The Birthday Paradox")
-    plt.grid(True, alpha=0.3)
-    plt.legend()
-    plt.show()
-    
-    # Print some key values
-    print("Birthday Problem - Key Values:")
-    for n in [10, 23, 30, 50, 70, 100]:
-        prob = birthday_probability(n)
-        print(f"  {n:3d} people: {prob:.1%} chance of shared birthday")
 
 
 def count_runs(flips):
@@ -310,27 +235,134 @@ def demonstrate_clustering_illusion():
     print("This is randomness at work. Clustering is inevitable!")
 
 
+# Figure generation functions
+
+def generate_figure_1_1(num_points=200):
+    """
+    Figure 1.1: Random Points in a Square
+    Demonstrates the clustering illusion with 200 random points.
+    """
+    points = generate_random_points(num_points, seed=42)
+    x = [p[0] for p in points]
+    y = [p[1] for p in points]
+    
+    with figure(1, 1, 1, figsize=(8, 8)) as fig:
+        ax = fig.add_subplot(111)
+        ax.scatter(x, y, s=30, alpha=0.6, color='steelblue')
+        ax.set_xlim(-0.05, 1.05)
+        ax.set_ylim(-0.05, 1.05)
+        ax.set_aspect('equal')
+        ax.set_title('Random Points in a Square')
+        ax.set_xlabel('X')
+        ax.set_ylabel('Y')
+        ax.grid(True, alpha=0.3)
+
+
+def generate_figure_1_2(num_flips=100, num_simulations=10000):
+    """
+    Figure 1.2: Distribution of Longest Streaks in Coin Flips
+    Shows how longest streaks distribute across many simulations.
+    """
+    results = simulate_coin_flips(num_flips, num_simulations)
+    
+    with figure(1, 1, 2) as fig:
+        ax = fig.add_subplot(111)
+        ax.hist(results['distribution'], bins=30, edgecolor='black', alpha=0.7, color='steelblue')
+        ax.axvline(results['mean'], color='red', linestyle='--', 
+                    linewidth=2, label=f"Mean: {results['mean']:.1f}")
+        ax.axvline(results['median'], color='green', linestyle='--', 
+                    linewidth=2, label=f"Median: {results['median']:.0f}")
+        ax.set_xlabel("Length of Longest Streak")
+        ax.set_ylabel("Frequency")
+        ax.set_title(f"Distribution of Longest Streaks in {num_flips} Coin Flips")
+        ax.legend()
+        ax.grid(True, alpha=0.3)
+
+
+def generate_figure_1_3():
+    """
+    Figure 1.3: The Birthday Paradox
+    Probability of shared birthdays increases rapidly with group size.
+    """
+    group_sizes = range(2, 101)
+    probabilities = [birthday_probability(n) for n in group_sizes]
+    
+    with figure(1, 1, 3) as fig:
+        ax = fig.add_subplot(111)
+        ax.plot(group_sizes, probabilities, linewidth=2, color='steelblue')
+        ax.axhline(0.5, color='red', linestyle='--', alpha=0.5, label='50% probability')
+        ax.axvline(23, color='green', linestyle='--', alpha=0.5, label='23 people')
+        ax.set_xlabel("Number of People")
+        ax.set_ylabel("Probability of Shared Birthday")
+        ax.set_title("The Birthday Paradox")
+        ax.grid(True, alpha=0.3)
+        ax.legend()
+        ax.set_ylim(0, 1)
+
+
+def generate_all_figures():
+    """
+    Generate all figures for Chapter 1.
+    """
+    print("Generating Chapter 1 figures...")
+    print()
+    
+    print("Generating Figure 1.1: Random Points in a Square")
+    generate_figure_1_1()
+    
+    print("Generating Figure 1.2: Distribution of Longest Streaks")
+    generate_figure_1_2()
+    
+    print("Generating Figure 1.3: The Birthday Paradox")
+    generate_figure_1_3()
+    
+    print()
+    print("✓ All figures generated successfully!")
+
+
 if __name__ == "__main__":
-    # Run demonstrations
-    print("Chapter 1: The Pattern-Seeking Mind")
-    print("=" * 50)
-    print()
+    import argparse
     
-    # Streak analysis
-    print("Longest Streak Analysis (100 flips, 10,000 simulations):")
-    results = simulate_coin_flips(100, 10000)
-    print(f"  Mean: {results['mean']:.2f}")
-    print(f"  Median: {results['median']:.0f}")
-    print(f"  Range: {results['min']} to {results['max']}")
-    print()
+    parser = argparse.ArgumentParser(
+        description="Chapter 1: The Pattern-Seeking Mind"
+    )
+    parser.add_argument(
+        "--generate-figures",
+        action="store_true",
+        help="Generate and export all figures to assets/images/"
+    )
     
-    # Birthday paradox
-    print("Birthday Problem:")
-    for n in [23, 50, 70]:
-        prob = birthday_probability(n)
-        print(f"  {n} people: {prob:.1%}")
-    print()
+    args = parser.parse_args()
     
-    # Clustering illusion
-    demonstrate_clustering_illusion()
+    if args.generate_figures:
+        generate_all_figures()
+    else:
+        # Run demonstrations
+        print("Chapter 1: The Pattern-Seeking Mind")
+        print("=" * 50)
+        print()
+        
+        # Streak analysis
+        print("Longest Streak Analysis (100 flips, 10,000 simulations):")
+        results = simulate_coin_flips(100, 10000)
+        print(f"  Mean: {results['mean']:.2f}")
+        print(f"  Median: {results['median']:.0f}")
+        print(f"  Range: {results['min']} to {results['max']}")
+        print()
+        
+        # Birthday paradox
+        print("Birthday Problem:")
+        for n in [23, 50, 70]:
+            prob = birthday_probability(n)
+            print(f"  {n} people: {prob:.1%}")
+        print()
+        
+        # Clustering illusion
+        demonstrate_clustering_illusion()
+        print()
+        
+        # Generate figures
+        print("=" * 50)
+        print("Generate figures with: python simulations.py --generate-figures")
+        print("=" * 50)
 
