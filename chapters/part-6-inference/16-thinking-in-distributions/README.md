@@ -42,6 +42,14 @@ $$P(\theta \mid \text{data}) \propto \theta^7 (1-\theta)^3$$
 
 This is a **Beta(8, 4) distribution**.
 
+<div align="center">
+
+![Figure 16.1: Prior, Likelihood, and Posterior](src/figures/16.1.png)
+
+**Figure 16.1:** The three components of Bayesian updating. Left: Prior belief (uniform, no preference). Middle: Likelihood of observing 7 heads in 10 flips at different $\theta$ values (peaked near 0.7). Right: Posterior distribution combining prior and likelihood (concentrated near 0.7 but with uncertainty). The data shifts our belief toward the observed frequency, while the prior prevents overconfident conclusions.
+
+</div>
+
 ### What's a Beta Distribution?
 
 The Beta distribution is defined on [0,1] and parameterized by two shape parameters (α, β):
@@ -76,6 +84,14 @@ Three priors, one dataset:
 
 **The prior matters when data is scarce.** With 7 heads in 10 flips, the prior still influences the posterior. But with 700 heads in 1000 flips, all three priors converge to essentially the same posterior.
 
+<div align="center">
+
+![Figure 16.2: Effect of Different Priors](src/figures/16.2.png)
+
+**Figure 16.2:** Three different priors (top) all updated with the same data (7 heads in 10 flips). Top left: Uniform prior leads to posterior centered near 0.67. Top middle: Skeptical prior (favoring fairness) pulls the posterior toward 0.5. Top right: Diffuse prior allows wider posterior. Bottom: The 95% credible intervals show how the prior matters when data is limited—all three intervals span different ranges, yet the observed frequency (red line) remains consistent.
+
+</div>
+
 ### More Data → Narrower Posterior
 
 Observe 70 heads in 100 flips (same frequency, more data):
@@ -84,6 +100,14 @@ Observe 70 heads in 100 flips (same frequency, more data):
 - Credible interval: ~[0.59, 0.79]
 
 The posterior is sharper. The uncertainty shrinks as we collect more evidence.
+
+<div align="center">
+
+![Figure 16.3: Convergence with More Data](src/figures/16.3.png)
+
+**Figure 16.3:** As sample size increases (10, 50, 200, 1000 flips), the posterior distributions narrow and converge, regardless of the prior used (shown in three colors). With 10 flips, the priors still matter. With 1000 flips, the posteriors from all three priors overlap almost completely at the true value. This demonstrates Bayesian consistency: data dominates the prior with large samples.
+
+</div>
 
 ### The Prior Washes Out
 
@@ -199,6 +223,14 @@ Bayesian approach:
 4. Also estimate the credible interval for the difference
 
 The result is a full distribution of plausible differences, not just a p-value.
+
+<div align="center">
+
+![Figure 16.4: A/B Testing with Bayesian Inference](src/figures/16.4.png)
+
+**Figure 16.4:** Left: Posterior distributions for conversion rates of Design A (12%) and Design B (18%). The posteriors overlap, showing uncertainty, but Design B is clearly shifted rightward. Right: Posterior distribution of the difference ($\theta_B - \theta_A$). Most of the distribution is above zero, meaning there is high probability (about 97%) that Design B is better than Design A. The Bayesian approach provides a distribution of plausible effect sizes, not just a binary hypothesis test.
+
+</div>
 
 ### Medical Diagnosis
 
