@@ -137,7 +137,7 @@ This is the clustering illusion: when randomness creates the very clusters we ex
 
 <div align="center">
 
-![Placeholder for London bomb impact map](../../../assets/images/placeholders/standard_deviation.svg)
+<img src="../../../assets/images/1.3-london-bomb-impacts.png" alt="V-2 Rocket Impacts on London (1944-1945)" width="450">
 
 **Figure 1.3:** Map of V-2 rocket impacts on London during WWII. Impacts appear clustered in certain areas, which led residents and military observers to suspect intentional targeting. Statistical analysis confirmed the clustering was consistent with random placement—a striking example of how randomness *appears* nonrandom.
 
