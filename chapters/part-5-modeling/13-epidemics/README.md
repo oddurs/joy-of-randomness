@@ -72,6 +72,14 @@ while I > 0:
 
 Or as a **continuous-time process**: arrivals (new infections) and departures (recoveries) happen according to Poisson processes.
 
+<div align="center">
+
+![Figure 13.1: Deterministic vs Stochastic SIR](src/figures/13.1.png)
+
+**Figure 13.1:** Stochastic SIR model (gray lines) shows high variability across multiple runs, while the deterministic model (red line) predicts a single smooth trajectory. With N=10,000 and R0=5, both capture similar overall patterns, but stochastic realizations deviate significantly early on.
+
+</div>
+
 ### What Randomness Does
 
 Run the stochastic model 100 times. Some runs show explosive growth (pandemic). Others show the disease dying out after a few cases.
@@ -115,6 +123,14 @@ For a given R₀, compute: **What fraction of 1000 stochastic runs result in maj
 
 The **critical threshold is R₀ ≈ 1**, but the transition is gradual due to randomness.
 
+<div align="center">
+
+![Figure 13.3: Outbreak Probability vs R0 and Population Size](src/figures/13.3.png)
+
+**Figure 13.2:** Probability of a major outbreak (>10% of population infected) depends on both R0 and population size. Smaller populations (N=1000) show more variability and lower outbreak probabilities, while larger populations (N=10,000) converge toward the deterministic prediction. At R0=1.5, outcomes are highly uncertain in small populations.
+
+</div>
+
 ---
 
 ## The Theory
@@ -154,7 +170,13 @@ In a branching process:
   - If R₀ ≤ 1, extinction probability = 1 (always dies out)
   - If R₀ > 1, extinction probability = (1/R₀)^k for a person at generation k
 
-For the SIR model with small I, the extinction probability from I=1 is approximately ρ^I, where ρ ≈ 1/R₀ (more precisely, ρ is the smallest root of a generating function equation).
+<div align="center">
+
+![Figure 13.2: Extinction Probability vs R0](src/figures/13.2.png)
+
+**Figure 13.2:** The stochastic model shows that even with R0 > 1, extinction is possible. Simulated extinction probabilities (blue circles) match the branching process theory (red dashed line showing 1/R0). The critical threshold at R0=1 is visible: below it, extinction is certain; above it, outbreaks can still fail due to chance alone.
+
+</div>
 
 ---
 
@@ -186,6 +208,14 @@ In reality, not all infected people transmit equally. Some are "superspreaders":
 This **overdispersion** affects:
 - Early outbreak dynamics (depends on whether the first case is a superspreader)
 - Network structure (if superspreaders are highly connected, they drive the epidemic)
+
+<div align="center">
+
+![Figure 13.4: Impact of Superspreaders](src/figures/13.4.png)
+
+**Figure 13.4:** Top row: 15 stochastic runs for homogeneous transmission (left) versus with 10% superspreaders (right). Bottom left: Extinction probability is higher with superspreaders because most infected individuals transmit less, making early extinction more likely. Bottom right: When major outbreaks occur, superspreaders can produce larger final sizes by transmitting more efficiently. The key insight: heterogeneity in transmission creates variability in outbreak outcomes.
+
+</div>
 
 ### Networks
 
