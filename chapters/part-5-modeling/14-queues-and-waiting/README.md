@@ -86,7 +86,13 @@ Think of it like a bathtub:
 - Waits become very long
 - System becomes unstable
 
-This is the central insight: **capacity isn't just about average throughput—it's about stability.**
+<div align="center">
+
+![Figure 14.1: Queue Length at Different Utilization Levels](src/figures/14.1.png)
+
+**Figure 14.1:** Queue length fluctuations over time at three utilization levels: 0.5 (top left), 0.7 (top right), and 0.9 (bottom left). At rho=0.9, the queue never fully empties and grows much larger. The bottom right panel shows average queue length increasing dramatically as utilization approaches 1.
+
+</div>
 
 ### Why Not Just Increase Capacity?
 
@@ -123,6 +129,14 @@ This means:
 
 Notice: as ρ → 1, average queue length → ∞. This explains why queues explode near capacity.
 
+<div align="center">
+
+![Figure 14.2: Average Queue Length vs Utilization](src/figures/14.2.png)
+
+**Figure 14.2:** The dramatic increase in average queue length as utilization approaches 1. The simulated data (blue circles) match the theoretical formula L = rho/(1-rho) (red line). This nonlinear relationship shows that small increases in utilization near capacity have huge effects on queue length—the reason why operational slack is essential.
+
+</div>
+
 ### Little's Law
 
 **Little's Law** is one of the most general results in queueing theory:
@@ -152,6 +166,14 @@ $$P(W > t) = \rho e^{-\mu(1-\rho)t}$$
 
 So waits follow an exponential distribution (shifted by the service time).
 
+<div align="center">
+
+![Figure 14.3: Waiting Time Distribution](src/figures/14.3.png)
+
+**Figure 14.3:** Histogram of customer waiting times (blue) against theoretical exponential distribution (red line). Left: rho=0.5 shows short waits with most customers served quickly. Right: rho=0.8 shows longer and more variable waits, with some customers waiting a long time. Higher utilization shifts the entire distribution rightward.
+
+</div>
+
 ---
 
 ## Going Deeper
@@ -165,6 +187,14 @@ With c servers, the stability condition becomes: $\rho = \frac{\lambda}{c \mu} <
 The stationary distribution is more complex, but the intuition is the same: having multiple servers dramatically reduces waiting times.
 
 **Key insight**: one server at 50% utilization is not the same as two servers at 25% utilization each. Adding parallelism helps.
+
+<div align="center">
+
+![Figure 14.4: Effect of Multiple Servers](src/figures/14.4.png)
+
+**Figure 14.4:** Left: Queue length over time for M/M/1 (one server), M/M/2 (two servers), and M/M/3 (three servers) with the same arrival rate. Adding servers dramatically reduces queue length. Right: Expected waiting time decreases dramatically as servers are added, following approximately a power law (W ~ 1/num_servers^0.7).
+
+</div>
 
 ### Non-Exponential Service: M/G/1 Queues
 
