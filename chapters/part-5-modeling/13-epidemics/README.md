@@ -1,5 +1,15 @@
 # Chapter 13: Epidemics
 
+## Metadata
+
+```yaml
+Part: 5 - Modeling
+Topics: Stochastic epidemic models, disease dynamics, SIR compartments, public health
+Key Concepts: Epidemic thresholds, stochastic variation, deterministic vs random outcomes
+```
+
+---
+
 ## The Role of Randomness in Disease Spread
 
 Run the same epidemic model twice, with the same parameters. The first time, the disease fizzles out after infecting 10 people. The second time, it sweeps through the entire population.

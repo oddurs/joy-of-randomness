@@ -1,5 +1,15 @@
 # Chapter 8: Chains Everywhere
 
+## Metadata
+
+```yaml
+Part: 3 - Memory
+Topics: Markov chains, stochastic processes, memoryless property, applications
+Key Concepts: Transition matrices, stationary distributions, long-run behavior
+```
+
+---
+
 ## The Surprising Ubiquity of Memoryless Transitions
 
 The same mathematics that generates fake Shakespeare can predict tomorrow's weather, model the evolution of DNA, and tell you how long you'll wait in line at the coffee shop. This chapter explores the breadth of Markov chains—showing that this simple idea (the future depends only on the present, not the past) shows up everywhere.

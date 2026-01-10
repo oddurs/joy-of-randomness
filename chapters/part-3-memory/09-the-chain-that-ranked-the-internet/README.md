@@ -1,5 +1,15 @@
 # Chapter 9: The Chain That Ranked the Internet
 
+## Metadata
+
+```yaml
+Part: 3 - Memory
+Topics: PageRank, Google algorithm, random walks on graphs, information retrieval
+Key Concepts: Stationary distributions, eigenvectors, web graph structure
+```
+
+---
+
 ## How a Random Walk Solved the Information Retrieval Problem
 
 In 1998, two Stanford PhD students had a strange idea: to find the best page on the internet, imagine a person clicking links at random, forever. The pages they visit most often are the most important. This elegant insight—rooted in Markov chain theory—became Google and changed how humanity accesses information.

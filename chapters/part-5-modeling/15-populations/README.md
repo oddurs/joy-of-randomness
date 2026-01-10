@@ -1,5 +1,15 @@
 # Chapter 15: Populations
 
+## Metadata
+
+```yaml
+Part: 5 - Modeling
+Topics: Stochastic population dynamics, birth-death processes, extinction risk, branching
+Key Concepts: Population survival, luck vs fitness, stochastic extinction
+```
+
+---
+
 ## Why Small Populations Face Extinction Through Bad Luck
 
 A species has 10 individuals left. Each year, each individual has a 60% chance of reproducing and a 40% chance of dying.

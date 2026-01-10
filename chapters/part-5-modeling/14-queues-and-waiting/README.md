@@ -1,5 +1,15 @@
 # Chapter 14: Queues and Waiting
 
+## Metadata
+
+```yaml
+Part: 5 - Modeling
+Topics: Queueing theory, service systems, arrival processes, traffic intensity
+Key Concepts: M/M/1 queues, Little's Law, waiting time distributions, queue length
+```
+
+---
+
 ## Why You Wait Even When There's Enough Capacity
 
 You're in line at the coffee shop. There's one barista, and customers arrive randomly. Sometimes there's no line; sometimes it's out the door.

@@ -1,5 +1,15 @@
 # Chapter 10: Throwing Darts at Pi
 
+## Metadata
+
+```yaml
+Part: 4 - Simulation
+Topics: Monte Carlo estimation, geometric integration, convergence, approximation
+Key Concepts: Sample averaging, law of large numbers, area estimation
+```
+
+---
+
 ## Computing π with Randomness
 
 Here's a strange way to calculate π: throw 10,000 darts at a square dartboard with a circle inscribed in it. Count how many land inside the circle. The ratio tells you π. This isn't a trick—it's a glimpse into a powerful general method for computing almost anything using randomness.

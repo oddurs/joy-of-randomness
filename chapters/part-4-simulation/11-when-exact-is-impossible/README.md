@@ -1,5 +1,15 @@
 # Chapter 11: When Exact Is Impossible
 
+## Metadata
+
+```yaml
+Part: 4 - Simulation
+Topics: Curse of dimensionality, high-dimensional integration, Monte Carlo scaling
+Key Concepts: Exponential growth, sampling advantage, efficient approximation
+```
+
+---
+
 ## The Curse of Dimensionality
 
 Divide each dimension into 10 bins. In 1D, that's 10 bins. In 2D, 100. In 3D, 1,000. In 100D, 10^100—more than the atoms in the universe. You cannot explore this space systematically. You must sample.

@@ -1,5 +1,15 @@
 # Chapter 12: Sampling from Strange Distributions
 
+## Metadata
+
+```yaml
+Part: 4 - Simulation
+Topics: Sampling methods, inverse transform, rejection sampling, arbitrary distributions
+Key Concepts: Transformation techniques, acceptance-rejection, distribution generation
+```
+
+---
+
 ## The Problem: Going Beyond Uniform
 
 You know how to generate uniform random numbers—computers are very good at that. But what if you need an exponential? A normal? A distribution defined by a complicated formula you can barely evaluate?

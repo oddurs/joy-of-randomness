@@ -1,5 +1,15 @@
 # Chapter 16: Thinking in Distributions
 
+## Metadata
+
+```yaml
+Part: 6 - Inference
+Topics: Bayesian inference, prior and posterior distributions, belief updating, uncertainty quantification
+Key Concepts: Conjugate priors, plausibility, posterior reasoning
+```
+
+---
+
 ## From Certainty to Uncertainty
 
 A coin lands heads 7 out of 10 times. Is it fair?

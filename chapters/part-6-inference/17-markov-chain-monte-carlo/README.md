@@ -1,5 +1,15 @@
 # Chapter 17: Markov Chain Monte Carlo
 
+## Metadata
+
+```yaml
+Part: 6 - Inference
+Topics: MCMC, Metropolis-Hastings, Gibbs sampling, posterior approximation, intractable models
+Key Concepts: Stationary distributions, burn-in, convergence diagnostics, sampling posteriors
+```
+
+---
+
 ## The Intractable Posterior Problem
 
 You have a Bayesian posterior you can't compute directly. Maybe it's a logistic regression with hundreds of features. Maybe it's a hierarchical model with thousands of parameters. You can evaluate the posterior *density* (up to a constant):
