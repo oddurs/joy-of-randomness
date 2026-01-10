@@ -78,6 +78,14 @@ def simulate_longest_streaks(num_sequences, flips_per_sequence):
 streaks = simulate_longest_streaks(10000, 100)
 ```
 
+<div align="center">
+
+<img src="../../../../src/figures/1.2.1.png" alt="Distribution of Longest Streaks in Coin Flips" width="600">
+
+**Figure 1.2.1:** Distribution of longest streaks across 10,000 sequences of 100 coin flips. Notice how most sequences have their longest streak between 6 and 8 flips. This is the *signature* of a fair coin: expect a run of about 7 heads (or tails) in 100 flips.
+
+</div>
+
 Now let's look at the distribution. What's the average longest streak? 
 
 ```python
@@ -140,6 +148,22 @@ print(f"Machine-generated runs: {count_runs(machine_sequence)}")
 
 Bet you the machine's number is lower. The machine tolerates clustering; you don't.
 
+<div align="center">
+
+<img src="../../../../src/figures/1.2.4.png" alt="Fair Coin vs Over-Alternating Sequences" width="600">
+
+**Figure 1.2.4:** Comparison of run counts between fair coin flips (truly random) and over-alternating sequences (human-like). Notice the fair coin produces fewer runs on average because it allows natural clustering, while humans overcompensate by alternating too often.
+
+</div>
+
+<div align="center">
+
+<img src="../../../../src/figures/1.2.2.png" alt="Distribution of Runs in Coin Flip Sequences" width="600">
+
+**Figure 1.2.2:** Distribution of run counts (transitions between H and T) across 10,000 sequences of 100 flips. The expected value for a fair coin is around 50 runs (the purple dashed line). Human-generated sequences typically cluster around 60-70 runs, showing over-alternation.
+
+</div>
+
 ## Patterns Are Loud
 
 Now here's where it gets interesting. Look at a simulated sequence and actually *look* for patterns:
@@ -174,6 +198,14 @@ def running_proportion(sequence):
 sequence = [random.choice(['H', 'T']) for _ in range(10000)]
 props = running_proportion(sequence)
 ```
+
+<div align="center">
+
+<img src="../../../../src/figures/1.2.3.png" alt="Convergence of Heads Proportion to 0.5" width="600">
+
+**Figure 1.2.3:** Running proportion of heads across 10,000 coin flips (log scale). Early on, the line bounces wildly—sometimes 60% heads, sometimes 40%. But as flips accumulate, the proportion stabilizes and converges toward 0.5. The shaded bands show 95% confidence intervals at different sample sizes, illustrating how uncertainty shrinks with sample size. This convergence is what we'll explore formally in the next chapter—it's the law of large numbers in action.
+
+</div>
 
 Plot this. At the beginning, the line will bounce wildly—sometimes 60% heads, sometimes 40%. But as you move to the right (more flips), the line stabilizes. By 10,000 flips, it's hovering very close to 0.5.
 
@@ -220,6 +252,16 @@ Learning to see randomness is a skill. Your brain is wired to find patterns, eve
 The antidote isn't theory—it's exposure. Watch random sequences. Generate them, plot them, stare at them. Contrast them with hand-generated "random" sequences. Notice how the machine-generated ones have longer runs, more imbalance in small windows, and a kind of wildness that feels suspicious until you convince yourself it's normal.
 
 By the time you finish this chapter's exercises, you'll have looked at hundreds of random sequences. Your eye will sharpen. When you see a real sequence, you'll have a feel for whether it looks randomly-generated or engineered.
+
+And that skill—intuitive pattern recognition for randomness—is the foundation for everything that follows.
+
+<div align="center">
+
+<img src="../../../../src/figures/1.2.5.png" alt="Variability in Randomness Across Sequences" width="600">
+
+**Figure 1.2.5:** Scatter plots showing the natural variation in longest streaks (left) and run counts (right) across 100 different sequences of 100 flips each. Even though we know the coin is fair, the values scatter widely—longest streaks range from about 5 to 10, and run counts vary from roughly 40 to 60. This visual demonstrates that "randomness" is not a fixed thing; it's a distribution of possible outcomes. When you see a single sequence, you're seeing one point in this cloud of variability.
+
+</div>
 
 And that skill—intuitive pattern recognition for randomness—is the foundation for everything that follows.
 
