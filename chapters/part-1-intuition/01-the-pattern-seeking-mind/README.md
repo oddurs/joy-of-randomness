@@ -203,7 +203,7 @@ $$P(\text{match}) = 1 - 0.507 = 0.493 \approx 50\%$$
 
 <div align="center">
 
-![Placeholder for birthday paradox probability curve](../../../assets/images/placeholders/standard_deviation.svg)
+<img src="../../../assets/images/1.4-birthday-paradox.png" alt="The Birthday Paradox: Probability of a Shared Birthday" width="600">
 
 **Figure 1.4:** Probability of at least two shared birthdays as a function of group size. Notice the sharp transition around 20–25 people. This counterintuitive curve shows why coincidences are inevitable when you have many opportunities for them to occur.
 
