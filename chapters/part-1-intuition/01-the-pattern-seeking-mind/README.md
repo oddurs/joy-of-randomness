@@ -23,9 +23,13 @@ This is the clustering illusion, and it's the first hint that our brains are hop
 
 Let's see this for ourselves. Here's a simple simulation: place 200 random points in a square.
 
+<div align="center">
+
 ![Placeholder for random point distributions](../../../assets/images/placeholders/standard_deviation.svg)
 
 **Figure 1.1:** Side-by-side comparison of truly random points (left) versus a human attempt at randomness (right). Notice how the random distribution has visible clusters and gaps—exactly what statistical randomness produces. The human-generated pattern feels more evenly distributed, which is precisely why humans are bad at intuiting randomness.
+
+</div>
 
 ```python
 import random
@@ -119,17 +123,25 @@ How many people, before seeing this, would have guessed that? Most would say 3, 
 
 Yet this isn't rare. Run 10,000 simulations and a streak of 7+ happens in about 95% of them.
 
+<div align="center">
+
 ![Placeholder for longest streak distribution](../../../assets/images/placeholders/standard_deviation.svg)
 
 **Figure 1.2:** Distribution of longest streaks in 100 coin flips across 10,000 simulations. The mean is approximately 7, and streaks of 10 or more occur regularly. This distribution captures the clustering illusion: randomness naturally produces the "rare" patterns we expect not to see.
+
+</div>
 
 This is the clustering illusion: when randomness creates the very clusters we expect *not* to see, we interpret them as evidence of nonrandomness.
 
 ### The London Bombing Campaign
 
+<div align="center">
+
 ![Placeholder for London bomb impact map](../../../assets/images/placeholders/standard_deviation.svg)
 
 **Figure 1.3:** Map of V-2 rocket impacts on London during WWII. Impacts appear clustered in certain areas, which led residents and military observers to suspect intentional targeting. Statistical analysis confirmed the clustering was consistent with random placement—a striking example of how randomness *appears* nonrandom.
+
+</div>
 
 Here's a real example that shook people's confidence. During World War II, German V-2 rockets rained on London. Citizens noticed something alarming: the impacts seemed clustered. They thought the Germans must be targeting specific areas.
 
@@ -189,9 +201,13 @@ This works out to about 0.507. So the probability that at least two people *do* 
 
 $$P(\text{match}) = 1 - 0.507 = 0.493 \approx 50\%$$
 
+<div align="center">
+
 ![Placeholder for birthday paradox probability curve](../../../assets/images/placeholders/standard_deviation.svg)
 
 **Figure 1.4:** Probability of at least two shared birthdays as a function of group size. Notice the sharp transition around 20–25 people. This counterintuitive curve shows why coincidences are inevitable when you have many opportunities for them to occur.
+
+</div>
 
 Why does this matter? Because it shows how much clustering we should *expect* in random data. When you have many opportunities for a coincidence (many pairs of people, many pairs of birthdays), coincidences happen constantly. They're not miraculous. They're inevitable.
 
@@ -236,9 +252,13 @@ This isn't stupidity. Intelligent people do this all the time. The pattern-detec
 
 Let's look at actual basketball data. We'll take some real shooting records and search for "hot hand" streaks. Then we'll compare them to simulated random shooting.
 
+<div align="center">
+
 ![Placeholder for hot hand streak comparison](../../../assets/images/placeholders/standard_deviation.svg)
 
 **Figure 1.5:** Comparison of streak lengths in real basketball shooting (blue) versus simulated random shooting (gray). The distributions are remarkably similar, suggesting that visible streaks in real shooting don't necessarily indicate a "hot hand" effect—they may just be what randomness produces.
+
+</div>
 
 *See [simulations.py](simulations.py) for code that does this analysis.*
 
