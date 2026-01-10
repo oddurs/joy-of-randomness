@@ -95,6 +95,14 @@ PageRank: [0.386, 0.193, 0.193, 0.096, 0.131]
 
 Page D is visited least because E links only to A and C.
 
+<div align="center">
+
+![Figure 9.1: PageRank on a Toy Web](src/figures/9.1.png)
+
+**Figure 9.1:** A toy 5-page web (left) with its transition matrix (middle) and the PageRank scores obtained from 10,000 random walk steps (right). Page A emerges as the most important because it receives links from multiple pages, especially from Page E which itself has limited outgoing links.
+
+</div>
+
 ---
 
 ## Patterns Emerge: The Circular Logic Resolves
@@ -185,6 +193,14 @@ Computing the stationary distribution directly is slow for billions of pages. In
 
 The power method is efficient and parallelizable—you can compute PageRank for billions of pages by distributing the computation across machines.
 
+<div align="center">
+
+![Figure 9.3: Power Iteration Convergence](src/figures/9.3.png)
+
+**Figure 9.3:** The power iteration method converges rapidly to the stationary PageRank distribution (left panel, first 50 iterations). The right panel shows convergence error on a log scale, revealing exponential decay. This explains why Google can compute PageRank for billions of pages efficiently—the algorithm converges in surprisingly few iterations regardless of network size.
+
+</div>
+
 ### The Damping Factor
 
 The damping factor $d$ is a crucial design choice:
@@ -194,6 +210,14 @@ The damping factor $d$ is a crucial design choice:
 - **d = 0.99**: Low teleportation. Links matter a lot. Extreme ranking differences.
 
 Higher d → smaller differences between popular and unpopular pages. Lower d → larger differences.
+
+<div align="center">
+
+![Figure 9.2: Effect of Damping Factor](src/figures/9.2.png)
+
+**Figure 9.2:** How the damping factor affects PageRank distribution on a 2-page cycle (A ↔ B). As damping increases (d = 0.5 to 0.99), the impact of links grows and the distribution becomes more unequal. At low damping (d = 0.5), teleportation dominates and both pages are equally important. At high damping (d = 0.99), following links dominates and the distribution reflects the link structure more strongly.
+
+</div>
 
 ### Personalized PageRank
 
@@ -226,6 +250,14 @@ Compare:
 - **PageRank**: Importance accounting for who cited you (smarter)
 
 A paper cited once by a highly influential paper may rank higher than a paper cited 10 times by obscure papers.
+
+<div align="center">
+
+![Figure 9.4: PageRank on a Larger Network](src/figures/9.4.png)
+
+**Figure 9.4:** A 10-page network with diverse structure including hubs (page 0 with many outgoing links), authorities (pages that receive from the hub), leaves, cycles, and an isolated component. Node size represents PageRank importance; the ranking (right panel, sorted by PageRank) shows page 0 dominates despite not being in every cycle, because it connects to many important pages. This demonstrates how PageRank captures global importance in complex networks.
+
+</div>
 
 ### Social Networks
 
