@@ -66,6 +66,14 @@ Error:       0.0000
 
 (Results vary; this shows a typical run.)
 
+<div align="center">
+
+![Figure 10.1: Random Darts in Circle](src/figures/10.1.png)
+
+**Figure 10.1:** Throwing 5,000 random darts at a square with an inscribed circle. Red dots land inside the circle (approximately 3,927 out of 5,000), giving an estimate of π ≈ 3.1416. The ratio of circle area to square area equals π/4, so the fraction of hits directly estimates π.
+
+</div>
+
 ---
 
 ## Patterns Emerge: Convergence and Error Scaling
@@ -88,6 +96,14 @@ $$\text{Error} \approx \frac{c}{\sqrt{n}}$$
 where c is a constant depending on the problem. To get one more decimal place of accuracy, we need about 100 times more darts.
 
 This is the **law of large numbers** at work: the sample mean converges to the true probability, but slowly.
+
+<div align="center">
+
+![Figure 10.2: Convergence of Pi Estimate](src/figures/10.2.png)
+
+**Figure 10.2:** The convergence story: as we increase sample size (left panel), the estimated pi oscillates around the true value but the bounds tighten. The error on a log-log scale (right panel) shows the characteristic 1/sqrt(n) convergence—to gain one decimal place of accuracy, we need roughly 100 times more samples.
+
+</div>
 
 ---
 
@@ -170,6 +186,14 @@ With 100 darts: ±0.19 (huge)
 With 10,000 darts: ±0.019 (okay)
 With 1,000,000 darts: ±0.0019 (decent)
 
+<div align="center">
+
+![Figure 10.3: Error Scaling and Confidence Intervals](src/figures/10.3.png)
+
+**Figure 10.3:** Confidence intervals from 50 independent trials at various sample sizes. The error bars shrink dramatically as sample size increases, but the √n scaling means progress is slow at large n. This demonstrates why Monte Carlo is useful for rough estimates but requires enormous computation for high precision.
+
+</div>
+
 ### Can We Do Better?
 
 The √n convergence seems slow. Can we improve?
@@ -247,6 +271,14 @@ The error scales as 1/√n, independent of dimension! This seems too good to be 
 It is... and it isn't. The constant c in the error grows with dimension. But importantly, grid methods scale exponentially worse (error proportional to 1/n^(1/d) where d is dimension).
 
 In very high dimensions, Monte Carlo becomes not just convenient—it becomes the only option. We'll explore this in Chapter 11.
+
+<div align="center">
+
+![Figure 10.4: High-Dimensional Hypersphere Volumes](src/figures/10.4.png)
+
+**Figure 10.4:** The volume of a unit ball in increasing dimensions (left panel) shrinks dramatically even as the dimension grows. In 10 dimensions, a ball occupies only about 0.25% of the hypercube it's inscribed in (right panel, log scale). This is the "curse of dimensionality"—most of the volume is in the corners, not near the center. Yet Monte Carlo estimation remains robust because error scales as 1/√n, independent of dimension.
+
+</div>
 
 ---
 
