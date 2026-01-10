@@ -60,6 +60,14 @@ Run this 100 times with n₀=10, λ=0.6, μ=0.4. Plot all trajectories:
 - Most go extinct before time 100
 - The distribution is highly skewed: survivors dominate; extinctions are common
 
+<div align="center">
+
+![Figure 15.1: Population Trajectories at Different Starting Sizes](src/figures/15.1.png)
+
+**Figure 15.1:** Stochastic population trajectories starting from different initial sizes ($n_0 = 1, 5, 10, 50$). Each gray line is one simulation. Starting from a single individual (top left) almost always results in extinction. Even with $n_0=10$ (top right), many trajectories crash. By $n_0=50$ (bottom right), most populations survive and grow.
+
+</div>
+
 ### The Key Parameters
 
 **Net growth rate per individual**: g = λ - μ
@@ -89,12 +97,20 @@ This is true even with positive expected growth (λ > μ).
 ### The Variance Matters
 
 Two scenarios with the same average growth:
-1. **Low variance**: λ = 0.5, μ = 0.49 (growth = 0.01, but stable)
-2. **High variance**: λ = 0.8, μ = 0.79 (growth = 0.01, but volatile)
+1. **Low variance**: λ = 0.55, μ = 0.45 (growth = 0.1, but stable)
+2. **High variance**: λ = 0.8, μ = 0.7 (growth = 0.1, but volatile)
 
-Both have expected growth 0.01 per individual. But:
+Both have expected growth 0.1 per individual. But:
 - Low variance: steady growth, rarely goes extinct
 - High variance: explosive growth OR crash and extinction
+
+<div align="center">
+
+![Figure 15.3: Effect of Variance on Extinction Risk](src/figures/15.3.png)
+
+**Figure 15.3:** Two scenarios with identical expected growth rate but different volatility. Left (low variance): populations trend upward steadily. Right (high variance): populations show wild swings—some explode to hundreds, others crash to zero. Higher variability dramatically increases extinction risk even when the expected growth is the same.
+
+</div>
 
 **Variability increases extinction risk.**
 
@@ -104,6 +120,14 @@ Among survivors, populations often grow large. The distribution has:
 - Many small populations
 - Few large populations
 - The distribution is not symmetric
+
+<div align="center">
+
+![Figure 15.4: Distribution of Final Population Sizes](src/figures/15.4.png)
+
+**Figure 15.4:** Left: Among all simulation runs, most populations go extinct (left spike at 0), but survivors show a wide range of sizes. Right: Among survivors only, the distribution is right-skewed—most survivors remain small or medium-sized, but a few grow very large. This highlights the bimodal outcome: extinction or explosive growth.
+
+</div>
 
 This matters for conservation: protecting the "average" population may not protect the diversity.
 
@@ -149,9 +173,17 @@ $$p(\text{extinction} \mid n=1) = \left(\frac{1.0}{1.2}\right)^1 = 0.833$$
 
 Even with 20% expected growth per individual, the probability of extinction from a single individual is 83%!
 
-$$p(\text{extinction} \mid n=5) = 0.833^5 ≈ 0.41$$
+$$p(\text{extinction} \mid n=5) = 0.833^5 \approx 0.41$$
 
 Starting from 5 individuals, extinction probability is 41%.
+
+<div align="center">
+
+![Figure 15.2: Extinction Probability vs Initial Population Size](src/figures/15.2.png)
+
+**Figure 15.2:** Extinction probability decreases exponentially with initial population size. Simulated results (blue circles) match the theoretical prediction $p = (\mu/\lambda)^{n_0}$ (red dashed line). Even with positive growth ($\lambda > \mu$), small populations have high extinction risk. At $n_0=1$, extinction probability is 83%; at $n_0=20$, it drops below 3%.
+
+</div>
 
 ### Branching Processes
 
