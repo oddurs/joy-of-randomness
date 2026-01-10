@@ -13,7 +13,14 @@ import sys
 import numpy as np
 import matplotlib
 import matplotlib.pyplot as plt
-matplotlib.rcParams['text.usetex'] = False  # Disable LaTeX to avoid dependency
+import scienceplots  # noqa: F401
+
+# Configure matplotlib with SciencePlots
+matplotlib.style.use('science')
+plt.rcParams['font.size'] = 11
+plt.rcParams['axes.linewidth'] = 1.2
+plt.rcParams['xtick.direction'] = 'in'
+plt.rcParams['ytick.direction'] = 'in'
 
 # Add shared module to path
 chapter_dir = Path(__file__).parent.parent
@@ -21,7 +28,6 @@ repo_root = chapter_dir.parent.parent.parent
 sys.path.insert(0, str(repo_root))
 sys.path.insert(0, str(chapter_dir))
 
-from shared.figures import FigureManager
 from simulations import (
     longest_streak,
     count_runs,
@@ -66,10 +72,10 @@ def generate_figure_2_1(num_sequences=10000, flips_per_sequence=100):
                linewidth=2, label=f"Median: {median_streak:.0f}")
     
     ax.set_xlabel("Length of Longest Streak")
-    ax.set_ylabel("Frequency (out of 10,000 sequences)")
-    ax.set_title(f"Distribution of Longest Streaks\n({flips_per_sequence} flips per sequence, {num_sequences} sequences)")
+    ax.set_ylabel("Frequency")
+    ax.set_title("Distribution of Longest Streaks")
     ax.legend()
-    ax.grid(True, alpha=0.3, axis='y')
+    ax.grid(True, alpha=0.3)
     
     save_figure(fig, "2.1.png")
 
@@ -82,7 +88,6 @@ def generate_figure_2_2(num_sequences=10000, flips_per_sequence=100):
     run_counts = simulate_runs(num_sequences, flips_per_sequence)
     
     mean_runs = statistics.mean(run_counts)
-    median_runs = statistics.median(run_counts)
     expected_runs = flips_per_sequence / 2 + 1
     
     fig = plt.figure(figsize=(10, 6))
@@ -96,10 +101,12 @@ def generate_figure_2_2(num_sequences=10000, flips_per_sequence=100):
                linewidth=2, label=f"Expected: {expected_runs:.1f}")
     
     ax.set_xlabel("Number of Runs (Transitions)")
-    ax.set_ylabel("Frequency (out of 10,000 sequences)")
-    ax.set_title(f"Distribution of Runs in Coin Flip Sequences\n({flips_per_sequence} flips per sequence, {num_sequences} sequences)")
+    ax.set_ylabel("Frequency")
+    ax.set_title("Distribution of Runs in Coin Flip Sequences")
     ax.legend()
-    ax.grid(True, alpha=0.3, axis='y')
+    ax.grid(True, alpha=0.3)
+    
+    save_figure(fig, "2.2.png")
     
     save_figure(fig, "2.2.png")
 
@@ -113,33 +120,25 @@ def generate_figure_2_3(flips_long=10000):
     sequence = generate_coin_sequence(flips_long)
     proportions = running_proportion(sequence)
     
-    # Prepare data for plotting at different scales
-    checkpoints = np.logspace(0, np.log10(flips_long), 100, dtype=int)
-    checkpoint_props = [proportions[cp - 1] for cp in checkpoints if cp <= len(proportions)]
-    checkpoint_nums = [cp for cp in checkpoints if cp <= len(proportions)]
-    
     fig = plt.figure(figsize=(10, 6))
     ax = fig.add_subplot(111)
     
     # Plot the full running proportion line
     ax.plot(range(1, len(proportions) + 1), proportions, 
-            linewidth=1, color='steelblue', alpha=0.7, label='Running proportion')
+            linewidth=1, color='steelblue', alpha=0.8, label='Running proportion')
     
     # Add a horizontal line at 0.5
-    ax.axhline(0.5, color='red', linestyle='--', linewidth=2, alpha=0.7, label='50% (fair coin)')
+    ax.axhline(0.5, color='red', linestyle='--', linewidth=2, alpha=0.7, label='Expected (0.5)')
     
     # Add confidence bands
-    for n in [100, 1000, 10000]:
-        if n <= flips_long:
-            margin = 1.96 / np.sqrt(n)  # 95% confidence interval
-            ax.fill_between([n, n], 0.5 - margin, 0.5 + margin, 
-                           alpha=0.1, color='green')
+    ax.fill_between(range(1, len(proportions) + 1), 0.45, 0.55, 
+                   alpha=0.1, color='gray', label='±5% band')
     
     ax.set_xlabel("Number of Flips")
     ax.set_ylabel("Proportion of Heads")
     ax.set_xscale('log')
     ax.set_ylim(0, 1)
-    ax.set_title(f"Convergence of Heads Proportion to 0.5\n({flips_long:,} flips, log scale)")
+    ax.set_title("Convergence of Heads Proportion to 0.5")
     ax.legend()
     ax.grid(True, alpha=0.3)
     
@@ -181,23 +180,16 @@ def generate_figure_2_4(num_sequences=100, flips_per_sequence=100):
     bins = range(min(min(fair_runs), min(over_alternating_runs)), 
                 max(max(fair_runs), max(over_alternating_runs)) + 2)
     
-    ax.hist(fair_runs, bins=bins, alpha=0.6, label='Fair Coin (truly random)', 
-           color='steelblue', edgecolor='black')
-    ax.hist(over_alternating_runs, bins=bins, alpha=0.6, label='Over-alternating (human-like)', 
-           color='coral', edgecolor='black')
+    ax.hist(fair_runs, bins=bins, alpha=0.6, label='Fair Coin', 
+           color='steelblue', edgecolor='black', linewidth=0.5)
+    ax.hist(over_alternating_runs, bins=bins, alpha=0.6, label='Over-alternating', 
+           color='coral', edgecolor='black', linewidth=0.5)
     
     ax.set_xlabel("Number of Runs")
     ax.set_ylabel("Frequency")
-    ax.set_title(f"Fair Coin vs Over-Alternating Sequences\n({num_sequences} sequences of {flips_per_sequence} flips)")
+    ax.set_title("Fair Coin vs Over-Alternating Sequences")
     ax.legend()
     ax.grid(True, alpha=0.3, axis='y')
-    
-    # Add text annotations for means
-    fair_mean = statistics.mean(fair_runs)
-    over_mean = statistics.mean(over_alternating_runs)
-    ax.text(0.98, 0.97, f"Fair mean: {fair_mean:.1f}\nHuman-like mean: {over_mean:.1f}", 
-           transform=ax.transAxes, verticalalignment='top', horizontalalignment='right',
-           bbox=dict(boxstyle='round', facecolor='wheat', alpha=0.5))
     
     save_figure(fig, "2.4.png")
 
@@ -221,7 +213,7 @@ def generate_figure_2_5(num_simulations=100):
                linewidth=2, label=f"Mean: {statistics.mean(max_streaks):.1f}")
     ax1.set_xlabel("Sequence Number")
     ax1.set_ylabel("Longest Streak Length")
-    ax1.set_title(f"Max Streak in Each Sequence")
+    ax1.set_title("Max Streak in Each Sequence")
     ax1.legend()
     ax1.grid(True, alpha=0.3)
     
@@ -232,11 +224,11 @@ def generate_figure_2_5(num_simulations=100):
                linewidth=2, label=f"Mean: {statistics.mean(run_counts):.1f}")
     ax2.set_xlabel("Sequence Number")
     ax2.set_ylabel("Number of Runs")
-    ax2.set_title(f"Runs in Each Sequence")
+    ax2.set_title("Runs in Each Sequence")
     ax2.legend()
     ax2.grid(True, alpha=0.3)
     
-    fig.suptitle(f"Variability in Randomness Across {num_simulations} Sequences of 100 Flips", 
+    fig.suptitle("Variability in Randomness Across Sequences", 
                 fontsize=12, y=1.00)
     
     save_figure(fig, "2.5.png")
