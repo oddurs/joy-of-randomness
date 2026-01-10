@@ -1,5 +1,15 @@
 # Chapter 7: What Comes Next?
 
+## Metadata
+
+```yaml
+Part: 3 - Memory
+Topics: Conditional probability, Markov chains, sequences
+Key Concepts: Memory horizon, transition probabilities, state dependence
+```
+
+---
+
 ## Hook
 
 "Given the text of all Shakespeare's plays, what word is most likely to follow 'to be or not to'? What about after 'the'? It turns out you can generate surprisingly convincing pseudo-Shakespeare with nothing more than counting and rolling dice."

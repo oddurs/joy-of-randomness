@@ -1,9 +1,12 @@
 # Chapter 1: The Pattern-Seeking Mind
 
 ## Metadata
-- **Part**: 1 - Intuition
-- **Topics**: Pattern recognition, cognitive biases, randomness perception
-- **Key Concepts**: Apophenia, selective attention, null hypothesis intuition
+
+```yaml
+Part: 1 - Intuition
+Topics: Pattern recognition, cognitive biases, randomness perception
+Key Concepts: Apophenia, selective attention, null hypothesis intuition
+```
 
 ---
 

@@ -1,9 +1,12 @@
 # Chapter 5: Wandering in Two Dimensions
 
 ## Metadata
-- **Part**: 2 - Movement
-- **Topics**: 2D random walks, return probability, Brownian motion
-- **Key Concepts**: Dimensionality effects, recurrence, Pólya's theorem, transcience
+
+```yaml
+Part: 2 - Movement
+Topics: 2D random walks, return probability, Brownian motion
+Key Concepts: Dimensionality effects, recurrence, Pólya's theorem
+```
 
 ---
 

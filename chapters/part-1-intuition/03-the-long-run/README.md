@@ -1,5 +1,15 @@
 # Chapter 3: The Long Run
 
+## Metadata
+
+```yaml
+Part: 1 - Intuition
+Topics: Law of large numbers, convergence, scaling behavior
+Key Concepts: Absolute vs relative frequency, equilibrium, asymptotic behavior
+```
+
+---
+
 ## The Paradox of Balance
 
 Flip a fair coin ten times and get seven heads. You're "up" four flips. Your winning streak looks real and significant.

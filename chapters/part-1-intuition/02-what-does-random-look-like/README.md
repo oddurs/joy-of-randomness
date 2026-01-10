@@ -1,5 +1,15 @@
 # Chapter 2: What Does Random Even Look Like?
 
+## Metadata
+
+```yaml
+Part: 1 - Intuition
+Topics: Visual pattern recognition, randomness intuition, data literacy
+Key Concepts: Runs and clusters, distribution shapes, frequency vs. sequence
+```
+
+---
+
 ## Can You Tell?
 
 Write down a sequence of one hundred heads and tails that *looks* random. Just make it up. Don't flip anything—use your intuition about what randomness should look like.

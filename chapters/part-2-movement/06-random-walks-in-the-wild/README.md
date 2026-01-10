@@ -1,5 +1,15 @@
 # Chapter 6: Random Walks in the Wild
 
+## Metadata
+
+```yaml
+Part: 2 - Movement
+Topics: Stochastic processes in nature, animal behavior, applications
+Key Concepts: Levy flights, anomalous diffusion, heavy-tailed distributions
+```
+
+---
+
 ## Hook
 
 An albatross flies 10,000 kilometers across the Pacific. A bacterium tumbles through a water droplet. A shopper wanders through a mall. Are they all doing the same thing?

@@ -1,12 +1,14 @@
 # Chapter 18: Fitting Models to Messy Data
 
-## The Central Question
+## Metadata
 
-You have data. You have a story about how the data was generated. The story has parameters you don't know.
+```yaml
+Part: 6 - Inference
+Topics: Bayesian model fitting, parameter estimation, model comparison
+Key Concepts: Posterior inference, hierarchical models, predictive distributions
+```
 
-Your job: figure out what parameter values are consistent with what you observed.
-
-This is the beating heart of data science.
+---
 
 ## The Central Question
 
