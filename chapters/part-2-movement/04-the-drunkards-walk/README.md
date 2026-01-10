@@ -69,6 +69,14 @@ What do you notice? The path is jagged and unpredictable. It wanders up, down, s
 
 Run this a few times. Every execution is different, chaotic in its own way.
 
+<div align="center">
+
+<img src="./src/figures/4.1.png" alt="A single random walk of 1000 steps" width="600">
+
+**Figure 4.1:** A single random walk. The path meanders unpredictably, sometimes returning close to the origin, sometimes drifting far away. Each execution produces a different trajectory—the shape and final position are impossible to predict from the rules alone.
+
+</div>
+
 But here's the thing: if we run *many* walks, patterns emerge.
 
 ---
@@ -150,6 +158,14 @@ print(f"Ratio: {final_positions.std() / np.sqrt(num_steps):.3f}")
 
 Look at that distribution. It's a bell curve centered at zero, exactly what we'd expect from the symmetry of the problem. But the *width* of that curve is striking.
 
+<div align="center">
+
+<img src="./src/figures/4.2.png" alt="Distribution of final positions from 5000 walks" width="600">
+
+**Figure 4.2:** Distribution of final positions from 5,000 random walks of 1,000 steps each. The histogram (blue) matches the theoretical normal distribution (red line) perfectly. The width of this distribution is characterized by the standard deviation, approximately sqrt(1000) ≈ 31.6 steps.
+
+</div>
+
 After 1000 steps, the standard deviation is around 31—approximately √1000. This is not a coincidence.
 
 ---
@@ -229,6 +245,14 @@ for n, obs, theo in zip(step_counts, observed_stds, theoretical_stds):
 ```
 
 The agreement is nearly perfect. Theory and simulation walk hand in hand.
+
+<div align="center">
+
+<img src="./src/figures/4.3.png" alt="sqrt(n) Scaling Law on log-log plot" width="600">
+
+**Figure 4.3:** The sqrt(n) scaling law demonstrated on a log-log plot. The observed standard deviations (blue circles) follow the theoretical prediction (red dashes) across multiple step counts. The perfect agreement confirms that the spread of a random walk grows as the square root of the number of steps.
+
+</div>
 
 ---
 
@@ -314,6 +338,14 @@ Notice what happens:
 - Unequal step probabilities change the expected value but the distribution still looks normal
 - A biased walk drifts away from zero but maintains a normal shape around its new center
 
+<div align="center">
+
+<img src="./src/figures/4.6.png" alt="Step distribution comparison across four scenarios" width="800">
+
+**Figure 4.6:** Comparing final position distributions across four different step rules (2,000 walks each). Despite differences in step sizes and biases, all distributions maintain an approximately normal shape—a powerful demonstration of the Central Limit Theorem. The key insight: the theorem applies regardless of how steps are distributed.
+
+</div>
+
 This flexibility is the power of the Central Limit Theorem: the shape persists.
 
 ---
@@ -384,6 +416,14 @@ plt.show()
 
 Notice: almost every walker returns to the origin, and the distribution of return times has a long tail. Some return quickly (after 2 steps is the minimum); others take a very long time.
 
+<div align="center">
+
+<img src="./src/figures/4.5.png" alt="Distribution of first return times on log-log scale" width="600">
+
+**Figure 4.5:** Distribution of first return times for random walkers returning to the origin. Plotted on a log-log scale, the distribution shows the heavy tail: while some walkers return quickly, others wander for tens of thousands of steps. Yet nearly all eventually return—a remarkable property unique to one-dimensional random walks.
+
+</div>
+
 This property—that 1D random walks are *recurrent*—is remarkable. It means every position is visited infinitely often, with probability 1. The walker will eventually visit every integer on the number line.
 
 ---
@@ -443,6 +483,14 @@ plt.show()
 ```
 
 These chaotic paths, which seemed to Brown like signs of life, are in fact signatures of the molecular world. They're beautiful evidence of randomness in nature.
+
+<div align="center">
+
+<img src="./src/figures/4.4.png" alt="Ensemble of multiple random walks" width="700">
+
+**Figure 4.4:** An ensemble of 20 random walks overlaid to show the collective behavior. While individual paths are chaotic and unpredictable, the ensemble reveals structure: the paths spread gradually, creating an invisible funnel expanding from the origin. This visualization makes clear why we see a bell curve in the final position distribution.
+
+</div>
 
 ---
 
