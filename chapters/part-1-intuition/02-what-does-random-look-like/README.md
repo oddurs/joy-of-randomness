@@ -80,9 +80,9 @@ streaks = simulate_longest_streaks(10000, 100)
 
 <div align="center">
 
-<img src="../../../../src/figures/1.2.1.png" alt="Distribution of Longest Streaks in Coin Flips" width="600">
+<img src="../../../../src/figures/2.1.png" alt="Distribution of Longest Streaks in Coin Flips" width="600">
 
-**Figure 1.2.1:** Distribution of longest streaks across 10,000 sequences of 100 coin flips. Notice how most sequences have their longest streak between 6 and 8 flips. This is the *signature* of a fair coin: expect a run of about 7 heads (or tails) in 100 flips.
+**Figure 2.1:** Distribution of longest streaks across 10,000 sequences of 100 coin flips. Notice how most sequences have their longest streak between 6 and 8 flips. This is the *signature* of a fair coin: expect a run of about 7 heads (or tails) in 100 flips.
 
 </div>
 
@@ -150,17 +150,17 @@ Bet you the machine's number is lower. The machine tolerates clustering; you don
 
 <div align="center">
 
-<img src="../../../../src/figures/1.2.4.png" alt="Fair Coin vs Over-Alternating Sequences" width="600">
+<img src="../../../../src/figures/2.4.png" alt="Fair Coin vs Over-Alternating Sequences" width="600">
 
-**Figure 1.2.4:** Comparison of run counts between fair coin flips (truly random) and over-alternating sequences (human-like). Notice the fair coin produces fewer runs on average because it allows natural clustering, while humans overcompensate by alternating too often.
+**Figure 2.4:** Comparison of run counts between fair coin flips (truly random) and over-alternating sequences (human-like). Notice the fair coin produces fewer runs on average because it allows natural clustering, while humans overcompensate by alternating too often.
 
 </div>
 
 <div align="center">
 
-<img src="../../../../src/figures/1.2.2.png" alt="Distribution of Runs in Coin Flip Sequences" width="600">
+<img src="../../../../src/figures/2.2.png" alt="Distribution of Runs in Coin Flip Sequences" width="600">
 
-**Figure 1.2.2:** Distribution of run counts (transitions between H and T) across 10,000 sequences of 100 flips. The expected value for a fair coin is around 50 runs (the purple dashed line). Human-generated sequences typically cluster around 60-70 runs, showing over-alternation.
+**Figure 2.2:** Distribution of run counts (transitions between H and T) across 10,000 sequences of 100 flips. The expected value for a fair coin is around 50 runs (the purple dashed line). Human-generated sequences typically cluster around 60-70 runs, showing over-alternation.
 
 </div>
 
@@ -201,9 +201,9 @@ props = running_proportion(sequence)
 
 <div align="center">
 
-<img src="../../../../src/figures/1.2.3.png" alt="Convergence of Heads Proportion to 0.5" width="600">
+<img src="../../../../src/figures/2.3.png" alt="Convergence of Heads Proportion to 0.5" width="600">
 
-**Figure 1.2.3:** Running proportion of heads across 10,000 coin flips (log scale). Early on, the line bounces wildly—sometimes 60% heads, sometimes 40%. But as flips accumulate, the proportion stabilizes and converges toward 0.5. The shaded bands show 95% confidence intervals at different sample sizes, illustrating how uncertainty shrinks with sample size. This convergence is what we'll explore formally in the next chapter—it's the law of large numbers in action.
+**Figure 2.3:** Running proportion of heads across 10,000 coin flips (log scale). Early on, the line bounces wildly—sometimes 60% heads, sometimes 40%. But as flips accumulate, the proportion stabilizes and converges toward 0.5. The shaded bands show 95% confidence intervals at different sample sizes, illustrating how uncertainty shrinks with sample size. This convergence is what we'll explore formally in the next chapter—it's the law of large numbers in action.
 
 </div>
 
@@ -257,9 +257,9 @@ And that skill—intuitive pattern recognition for randomness—is the foundatio
 
 <div align="center">
 
-<img src="../../../../src/figures/1.2.5.png" alt="Variability in Randomness Across Sequences" width="600">
+<img src="../../../../src/figures/2.5.png" alt="Variability in Randomness Across Sequences" width="600">
 
-**Figure 1.2.5:** Scatter plots showing the natural variation in longest streaks (left) and run counts (right) across 100 different sequences of 100 flips each. Even though we know the coin is fair, the values scatter widely—longest streaks range from about 5 to 10, and run counts vary from roughly 40 to 60. This visual demonstrates that "randomness" is not a fixed thing; it's a distribution of possible outcomes. When you see a single sequence, you're seeing one point in this cloud of variability.
+**Figure 2.5:** Scatter plots showing the natural variation in longest streaks (left) and run counts (right) across 100 different sequences of 100 flips each. Even though we know the coin is fair, the values scatter widely—longest streaks range from about 5 to 10, and run counts vary from roughly 40 to 60. This visual demonstrates that "randomness" is not a fixed thing; it's a distribution of possible outcomes. When you see a single sequence, you're seeing one point in this cloud of variability.
 
 </div>
 
