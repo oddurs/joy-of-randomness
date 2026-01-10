@@ -111,8 +111,8 @@ class FigureManager:
         """
         Generate filename from part, chapter, and figure number.
         
-        Uses format: {part}.{figure_num}.png
-        (Chapter is used for validation but not in filename)
+        Uses format: {chapter}.{figure_num}.png
+        where chapter is the global chapter number (1-18)
         
         Args:
             part: Part number (1-6)
@@ -120,9 +120,9 @@ class FigureManager:
             figure_num: Figure number within chapter (starting at 1)
         
         Returns:
-            Filename string (e.g., "1.1.png" for part 1, chapter 1, figure 1)
+            Filename string (e.g., "1.1.png" for chapter 1 figure 1)
         """
-        return f"{part}.{figure_num}.png"
+        return f"{chapter}.{figure_num}.png"
 
     def save(self, fig, part, chapter, figure_num, margin_pad=None):
         """
