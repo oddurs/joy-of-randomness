@@ -57,6 +57,8 @@ Imagine a target distribution (e.g., a mixture of two normals). Run Metropolis-H
 - A histogram of visited states matches the target distribution
 - But the samples are **correlated**: consecutive states are similar
 
+![Figure 17.1: Metropolis-Hastings convergence to target distribution. Left: trace plot during burn-in (red shading) shows initial wandering. Center-left: full chain trace shows settling behavior. Center-right: histogram of post-burn-in samples closely matches the target mixture distribution. Right: autocorrelation decays as lag increases, indicating dependent but mixing samples.](src/figures/17.1.png)
+
 ---
 
 ## Patterns Emerge
@@ -84,6 +86,8 @@ This is the magic: without explicitly computing π, the chain naturally weights 
 - Good mixing (chain explores efficiently)
 - Lower autocorrelation
 
+![Figure 17.2: Proposal distribution tuning effects. Top-left: narrow proposal (SD=0.3) has high acceptance but explores slowly, capturing only one mode. Top-right: Goldilocks proposal (SD=1.0) with ~30% acceptance efficiently samples both modes. Bottom-left: wide proposal (SD=2.5) has low acceptance (~10%) and sparse samples. Bottom-right: very wide proposal (SD=5.0) is inefficient with poor exploration.](src/figures/17.2.png)
+
 ### Multimodality: The Chain Gets Stuck
 
 If the posterior has multiple modes (peaks), Metropolis-Hastings struggles. The chain gets stuck in one mode, rarely jumping to another.
@@ -91,6 +95,8 @@ If the posterior has multiple modes (peaks), Metropolis-Hastings struggles. The 
 Example: mixture of two gaussians separated by a low-density valley. A local proposal can't jump across. The chain explores one mode thoroughly but misses the other.
 
 This is a **fundamental challenge** in MCMC: multimodal posteriors are hard.
+
+![Figure 17.4: Multimodality challenge illustrated with a bimodal target (two equal-weight Gaussian modes separated by a valley). Left: narrow proposal (SD=0.5) starting at mode 1 never jumps to mode 2—histogram shows only mode 1 captured. Right: wide proposal (SD=3) can jump between modes and captures both, though with lower acceptance rates. This demonstrates the "local trap" problem: proposals must be wide enough to escape local modes.](src/figures/17.4.png)
 
 ---
 
@@ -123,6 +129,8 @@ The chain starts from an arbitrary initial state and takes time to reach station
 Solution: **burn-in**. Run the chain for some number of iterations (e.g., 1000) without recording samples. Then start collecting.
 
 How long to burn in? Varies. Diagnose with trace plots: look for the first time the chain "settles down" and stops drifting.
+
+![Figure 17.3: Convergence diagnostics for multiple chains. Top-left: four independent chains started from different initial states (−4, 0, 3, 5) all converge to the same distribution. Top-right: R-hat diagnostic drops below 1.1, indicating convergence. Bottom-left: post-burn-in posterior histograms from all chains overlay perfectly. Bottom-right: effective sample size after accounting for autocorrelation is ~60% of raw samples across all chains.](src/figures/17.3.png)
 
 ### Thinning: Reducing Autocorrelation
 
