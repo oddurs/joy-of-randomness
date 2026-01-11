@@ -28,9 +28,9 @@ Let's see this for ourselves. Here's a simple simulation: place 200 random point
 
 <div align="center">
 
-<img src="./src/figures/1.1.png" alt="Clustering Illusion: Truly Random vs Human Random" width="600">
+<img src="./src/figures/1.1.png" alt="Clustering Illusion: Uniform vs Truly Random" width="800">
 
-**Figure 1.1:** Random points in a square. Notice the visible clusters and gaps—this is what truly random data looks like. Our brains interpret these clusters as suspicious, but they're exactly what statistical randomness produces.
+**Figure 1.1:** The Clustering Illusion exposed. **Left:** A quasi-uniform distribution with small jitter—what our intuition expects randomness to look like. It feels balanced and intentional. **Right:** Truly random points (seed=42) showing visible clusters, dense regions, and empty gaps. Our brains interpret the right panel as suspicious—too lumpy, too uneven. But the right panel is statistically independence in action. The gap between these two images *is* the clustering illusion.
 
 </div>
 
@@ -130,23 +130,15 @@ Yet this isn't rare. Run 10,000 simulations and a streak of 7+ happens in about 
 
 <div align="center">
 
-<img src="./src/figures/1.2.png" alt="Distribution of longest streaks in 100 coin flips" width="600">
+<img src="./src/figures/1.2.png" alt="Expected vs Actual streak distribution" width="800">
 
-**Figure 1.2:** Distribution of longest streaks in 100 coin flips across 10,000 simulations. The mean is approximately 7, and streaks of 10 or more occur regularly. This distribution captures the clustering illusion: randomness naturally produces the "rare" patterns we expect not to see.
+**Figure 1.2:** The Streak Length Paradox. **Left:** What most people expect—a distribution of longest streaks peaking around 3-4, with long streaks being rare. **Right:** What 10,000 simulations of 100 coin flips actually produce—a mean of approximately 7, with streaks of 10 or more appearing regularly. This gap reveals the core of the clustering illusion: randomness produces streaks that feel abnormally long precisely because they contradict our intuition about how random data should behave.
 
 </div>
 
 This is the clustering illusion: when randomness creates the very clusters we expect *not* to see, we interpret them as evidence of nonrandomness.
 
 ### The London Bombing Campaign
-
-<div align="center">
-
-<img src="./src/figures/1.3.png" alt="The Birthday Paradox" width="600">
-
-**Figure 1.3:** The Birthday Paradox: probability of at least two shared birthdays increases rapidly with group size. The transition around 23 people is surprisingly sharp, showing how many opportunities for coincidence make them nearly inevitable.
-
-</div>
 
 Here's a real example that shook people's confidence. During World War II, German V-2 rockets rained on London. Citizens noticed something alarming: the impacts seemed clustered. They thought the Germans must be targeting specific areas.
 
@@ -192,9 +184,9 @@ This is the base rate problem: you see clusters and assume a cause, forgetting t
 
 <div align="center">
 
-<img src="./src/figures/1.4.png" alt="Clustering in a Grid" width="600">
+<img src="./src/figures/1.4.png" alt="Clustering in a Grid" width="700">
 
-**Figure 1.4:** A 10×10 grid filled with 200 random points. The visible clustering and gaps are exactly what we expect from randomness. Our pattern-seeking brain interprets these clusters as meaningful, but they're simply the natural outcome of independent random placement. This is the clustering illusion made visual.
+**Figure 1.4:** A 10×10 grid showing how 200 truly random points distribute themselves. Each cell displays its count. Notice the variation: some cells are packed (dark red), while others sit empty (pale yellow). The mean is about 2 points per cell, but the actual distribution varies widely. This uneven clustering is the clustering illusion made quantitative—it's not evidence of a pattern; it's exactly what independence produces.
 
 </div>
 
@@ -218,7 +210,13 @@ This works out to about 0.507. So the probability that at least two people *do* 
 
 $$P(\text{match}) = 1 - 0.507 = 0.493 \approx 50\%$$
 
-See Figure 1.1.3 above for a visualization of how this probability changes with group size.
+<div align="center">
+
+<img src="./src/figures/1.3.png" alt="Birthday Paradox: expectation vs reality" width="800">
+
+**Figure 1.3:** The Birthday Paradox Paradox. **Left:** What we expect if we naively think probability increases linearly—roughly one person per 365 adds 1/365 to the total probability. This would require about 183 people to reach 50%. **Right:** The actual probability reveals a sharp, exponential transition, crossing 50% at just 23 people. The dramatic difference shows why our intuition about "many chances" fails us—we underestimate how fast the number of possible pairs grows, and thus how rapidly probabilities compound.
+
+</div>
 
 ---
 
@@ -238,9 +236,9 @@ This is a genuinely open question. But what's *not* open: our intuitions are mis
 
 <div align="center">
 
-<img src="./src/figures/1.5.png" alt="Streaks and Transitions in Random Sequences" width="600">
+<img src="./src/figures/1.5.png" alt="Streaks and transitions in random sequences" width="800">
 
-**Figure 1.5:** Left panel: distribution of longest streaks across 1,000 random sequences of 100 flips each. Right panel: distribution of transition counts (runs) in the same sequences. Notice how naturally streaky randomness is—longest streaks commonly reach 8-10, and runs vary from roughly 40-60. This demonstrates why we're fooled into seeing patterns everywhere: randomness itself looks streaky.
+**Figure 1.5:** The "Hot Hand" Built Into Randomness. **Left:** Across 1,000 random sequences of 100 flips each, longest streaks average around 7—and streaks of 10+ are common. **Right:** The number of transitions (runs of same result) averages around 50, meaning roughly half the sequence consists of unbroken runs. This is the core insight: randomness naturally produces long streaks and prolonged consistency. We see these patterns everywhere because they're inherent to randomness itself. This is why the "hot hand" feels so real—not because athletes have special states, but because even truly random data looks streaky.
 
 </div>
 
