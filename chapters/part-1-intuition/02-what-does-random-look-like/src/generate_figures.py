@@ -53,29 +53,60 @@ def save_figure(fig, filename):
 
 def generate_figure_2_1(num_sequences=10000, flips_per_sequence=100):
     """
-    Figure 2.1: Distribution of Longest Streaks
-    Shows the distribution of longest streaks across 10,000 sequences of 100 coin flips.
+    Figure 2.1: The Signature of Fairness
+    Distribution of longest streaks shows what a fair coin looks like.
+    This is the visual reference for randomness.
     """
     streaks = simulate_longest_streaks(num_sequences, flips_per_sequence)
     
-    fig = plt.figure(figsize=(10, 6))
+    fig = plt.figure(figsize=(11, 7))
     ax = fig.add_subplot(111)
-    ax.hist(streaks, bins=range(min(streaks), max(streaks) + 2), 
-            edgecolor='black', alpha=0.7, color='steelblue')
+    
+    # Create histogram with integer bins
+    streak_min = min(streaks)
+    streak_max = max(streaks)
+    bins = np.arange(streak_min - 0.5, streak_max + 1.5, 1)
+    
+    n, bins_edges, patches = ax.hist(streaks, bins=bins, 
+                                      edgecolor='black', alpha=0.7, 
+                                      color='steelblue')
+    
+    # Highlight the modal range (6-8) with darker color
+    for i, patch in enumerate(patches):
+        streak_val = int(bins_edges[i] + 0.5)
+        if 6 <= streak_val <= 8:
+            patch.set_color('darkslateblue')
+            patch.set_alpha(0.85)
     
     mean_streak = statistics.mean(streaks)
-    median_streak = statistics.median(streaks)
     
+    # Add mean line
     ax.axvline(mean_streak, color='red', linestyle='--', 
-               linewidth=2, label=f"Mean: {mean_streak:.1f}")
-    ax.axvline(median_streak, color='green', linestyle='--', 
-               linewidth=2, label=f"Median: {median_streak:.0f}")
+               linewidth=2.5, label=f"Mean: {mean_streak:.1f}")
     
-    ax.set_xlabel("Length of Longest Streak")
-    ax.set_ylabel("Frequency")
-    ax.set_title("Distribution of Longest Streaks")
-    ax.legend()
-    ax.grid(True, alpha=0.3)
+    # Calculate 95% range
+    sorted_streaks = sorted(streaks)
+    lower_95 = sorted_streaks[int(len(sorted_streaks) * 0.025)]
+    upper_95 = sorted_streaks[int(len(sorted_streaks) * 0.975)]
+    
+    ax.set_xlabel("Length of Longest Streak", fontsize=12, fontweight='bold')
+    ax.set_ylabel("Frequency", fontsize=12, fontweight='bold')
+    ax.set_title("The Signature of Fairness:\nLongest Streaks in 100-Flip Sequences", 
+                 fontsize=13, fontweight='bold')
+    
+    # Integer x-axis
+    ax.set_xticks(range(int(streak_min), int(streak_max) + 1))
+    
+    ax.legend(fontsize=11, loc='upper right')
+    ax.grid(True, alpha=0.3, axis='y')
+    
+    # Add annotation box with statistics
+    stats_text = (f"Modal range: 6–8\n"
+                  f"95% range: {int(lower_95)}–{int(upper_95)}\n"
+                  f"n = {num_sequences} sequences")
+    ax.text(0.02, 0.97, stats_text, transform=ax.transAxes,
+           fontsize=10, verticalalignment='top',
+           bbox=dict(boxstyle='round', facecolor='wheat', alpha=0.8))
     
     save_figure(fig, "2.1.png")
 

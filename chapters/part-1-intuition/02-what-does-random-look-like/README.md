@@ -80,9 +80,9 @@ streaks = simulate_longest_streaks(10000, 100)
 
 <div align="center">
 
-<img src="./src/figures/2.1.png" alt="Distribution of Longest Streaks in Coin Flips" width="600">
+<img src="./src/figures/2.1.png" alt="Signature of Fairness: Longest Streaks Distribution" width="800">
 
-**Figure 2.1:** Distribution of longest streaks across 10,000 sequences of 100 coin flips. Notice how most sequences have their longest streak between 6 and 8 flips. This is the *signature* of a fair coin: expect a run of about 7 heads (or tails) in 100 flips.
+**Figure 2.1:** The Signature of Fairness. This is what 10,000 fair coin sequences (100 flips each) look like when you measure their longest streak. The modal range (6–8, shown in darker blue) is the heartland of randomness—this is where most fair coins land. The 95% confidence range (typically 5–10) shows the normal variation you'd expect. This distribution shape *is* the visual signature of a fair coin. When you see something like this, you can be confident the process is random and fair.
 
 </div>
 
